@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>后台管理</title>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="__PUBLIC__/admin/images/favicon.ico">
+
+    <link href="__PUBLIC__/admin/css/datatables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/responsive.bootstrap4.css" rel="stylesheet" type="text/css"/>
+
+    <!-- App css -->
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="__PUBLIC__/admin/js/style.js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    {include file="Public/sidemenu"/}
+    <!--    <include src="sidemenu.html"></include>-->
+
+    <div class="content-page">
+        <div class="content">
+
+            {include file="Public/header"/}
+            <!--            <include src="header.html"></include>-->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="{:url('admin/Index/index')}">后台</a></li>
+                                    <li class="breadcrumb-item active">数据管理</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">数据管理</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <h4 class="header-title">植物数据表</h4>
+                                        <p class="text-muted font-13 mb-4">
+                                            这里显示了所有植物基本信息
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                                                data-target="#addcontactmodal"><i class="mdi mdi-plus mr-1"></i>添加信息
+                                        </button>
+                                    </div>
+                                </div>
+                                <table class="table dt-responsive table-striped"
+                                       style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>别名</th>
+                                        <th>学名</th>
+                                        <th>分布</th>
+                                        <th>科</th>
+                                        <th>属</th>
+                                        <th>介绍</th>
+                                        <th>动作</th>
+                                    </tr>
+                                    </thead>
+
+                                    {volist name="plants" id="plant"}
+                                    <tbody>
+                                    <td>{$plant->getData('name')}</td>
+                                    <td>{$plant->getData('alias')}</td>
+                                    <td>{$plant->getData('sciname')}</td>
+                                    <td>{$plant->getData('area')}</td>
+                                    <td>{$plant->getPlantClass()->getData('familyname')}</td>
+                                    <td>{$plant->getPlantClass()->getData('genusname')}</td>
+                                    <td>{$plant->getData('introduce')}</td>
+                                    <td>
+                                        <div class="btn-group dropdown">
+                                            <a href="javascript: void(0);"
+                                               class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                                               data-toggle="dropdown" aria-expanded="false"><i
+                                                    class="mdi mdi-dots-horizontal"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"
+                                                   href="{:url('edit?id='.$plant->getData('plantid'))}"><i
+                                                        class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>
+                                                <a class="dropdown-item"
+                                                   href="{:url('delete?id='.$plant->getData('plantid'))}"><i
+                                                        class="mdi mdi-delete mr-1 text-muted"></i>删除</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    </tbody>
+                                    {/volist}
+                                </table>
+                                {$plants->render()}
+                            </div> <!-- end card body-->
+                        </div> <!-- end card -->
+                    </div><!-- end col-->
+                </div>
+                <!-- end row-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        {include file="Public/footer"/}
+        <!--        <include src="footer.html"></include>-->
+
+    </div>
+
+</div>
+<!-- END wrapper -->
+<div class="modal fade" id="addcontactmodal" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">添加植物信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2">名 称:</label>
+                        <input type="text" class="my-form col-sm-10" id="name" placeholder="Enter name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="another" class="col-sm-2">别 名:</label>
+                        <input type="text" class="my-form col-sm-10" id="another" placeholder="Enter another name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="scientific" class="col-sm-2">学 名:</label>
+                        <input type="text" class="my-form col-sm-10" id="scientific"
+                               placeholder="Enter scientific name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="notice" class="col-sm-2">分 布:</label>
+                        <input type="text" class="my-form col-sm-10" id="notice" placeholder="备注">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="checkbox"><label>北苑</label>
+                                <input type="checkbox"><label>南苑</label>
+                                <input type="checkbox"><label>牌坊</label>
+                                <input type="checkbox"><label>图书馆</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="checkbox"><label>教学楼</label>
+                                <input type="checkbox"><label>理科楼</label>
+                                <input type="checkbox"><label>行政楼</label>
+                                <input type="checkbox"><label>逸夫楼</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 ">科 :</label>
+                        <select class="custom-select col-sm-10">
+                            <option selected>请选择科</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 ">属 :</label>
+                        <select class="custom-select col-sm-10">
+                            <option selected>请选择属</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">图 片:</label>
+                        <input type="file" class="form-control col-sm-10">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">模 型:</label>
+                        <input type="file" class="form-control col-sm-10">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2">介 绍:</label>
+                        <textarea class="form-control col-sm-10" rows="5"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- App js -->
+<script src="__PUBLIC__/admin/js/vendor.min.js"></script>
+<script src="__PUBLIC__/admin/js/app.min.js"></script>
+
+<!-- third party js -->
+<!--<script src="__PUBLIC__/admin/js/datatables.init.js"></script>-->
+<script src="__PUBLIC__/admin/js/jquery.datatables.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.bootstrap4.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.responsive.min.js"></script>
+<script src="__PUBLIC__/admin/js/responsive.bootstrap4.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/datatables.buttons.min.js"></script>
+<script src="__PUBLIC__/admin/js/buttons.bootstrap4.min.js"></script>
+<script src="__PUBLIC__/admin/js/buttons.html5.min.js"></script>
+<script src="__PUBLIC__/admin/js/buttons.flash.min.js"></script>
+<script src="__PUBLIC__/admin/js/buttons.print.min.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.keytable.min.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.select.min.js"></script>
+<!-- third party js ends -->
+
+<script>
+    $(document).ready(function () {
+        $('#table_id_example').DataTable({
+            padding: true
+        });
+    });
+</script>
+
+</body>
+
+</html>
