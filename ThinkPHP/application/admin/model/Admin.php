@@ -72,6 +72,7 @@ class Admin extends Model
     /**
      * 判断用户是否登陆
      * @return bool 已登陆true
+     * @throws
      */
     static public function isLogin(){
         $adminid=session('adminid');
@@ -80,5 +81,23 @@ class Admin extends Model
         }else{
             return false;
         }
+    }
+
+    /**
+     * 查询管理员信息
+     * @return admininfo 数组
+     * @throws
+     */
+    static public function saveData(){
+        //查询plant_info和plant_class的信息并保存到txt中
+        $AdminInfo=new self();
+
+        //查询id,头像，用户名，权限，IP
+        $admininfo=$AdminInfo
+            ->alias('a')
+            ->field('a.adminid,a.headpic,a.username,CASE a.authority WHEN 1 THEN "超级管理员" ELSE "管理员" END as authority,a.IP')
+            ->select();
+
+        return $admininfo;
     }
 }

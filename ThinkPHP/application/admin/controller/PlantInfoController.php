@@ -2,7 +2,9 @@
 
 
 namespace app\admin\controller;
+use app\admin\model\PlantClass;
 use app\admin\model\PlantInfo;
+use function MongoDB\BSON\toJSON;
 
 /**
  * Class PlantInfoController
@@ -11,9 +13,9 @@ use app\admin\model\PlantInfo;
 class PlantInfoController extends IndexController
 {
     public function index(){
-        $plants=PlantInfo::paginate(5);
+//        $plants=PlantInfo::paginate(5);
 //        $plants=\app\admin\model\PlantInfo::select();
-        $this->assign('plants',$plants);
+//        $this->assign('plants',$plants);
 
         return $this->fetch();
     }
@@ -22,9 +24,29 @@ class PlantInfoController extends IndexController
         return $this->fetch();
     }
 
-    public function test(){
-        $test="ajax";
-        $this->ajaxReturn($test);
+    public function savedata(){
+//        //查询plant_info和plant_class的信息并保存到txt中
+//        $PlantInfo=new PlantInfo();
+//
+//        //查询名称，别名，学名，区域，科，属，介绍
+//        //join()函数用来关联两个表
+//        //where这里不用也可以
+//        $plantinfo=$PlantInfo
+//            ->alias('i')
+//            ->join('plant_class c','c.plantname=i.name')
+//            ->field('i.name,i.alias,i.sciname,i.area,c.familyname,c.genusname,i.introduce')
+//            ->where('i.name=c.plantname')
+//            ->select();
+
+        $plantinfo=PlantInfo::saveData();
+
+        //存储json信息,$test2是json转换后的变量
+        $plantjson=json_encode($plantinfo,JSON_UNESCAPED_UNICODE);
+        $fp=fopen("../public/static/data/plantinfo.txt",'w+') or exit("Unable to open file!");
+        fwrite($fp,$plantjson);
+        fclose($fp);
+
+        return $this->fetch('index');
     }
 
     public function getData(){
