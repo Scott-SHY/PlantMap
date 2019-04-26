@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
@@ -35,52 +36,62 @@
             {include file="Public/header"/}
 <!--            <include src="header.html"></include>-->
 
+            <!-- Start Content-->
             <div class="container-fluid">
 
+                <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{:url('admin/Index/index')}">后台</a></li>
-                                    <li class="breadcrumb-item active">用户管理</li>
+                                    <li class="breadcrumb-item active">反馈管理</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">用户管理</h4>
+                            <h4 class="page-title">反馈管理</h4>
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
+
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <table id="admin-datatable"
-                                       class="table table-hover dt-responsive nowrap table-centered">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <h4 class="header-title">建议反馈</h4>
+                                        <p class="text-muted font-13 mb-4">
+                                            这里显示所有反馈意见
+                                        </p>
+                                    </div>
+                                </div>
+                                <table id="bug-datatable" class="table dt-responsive nowrap table-striped">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>头像</th>
-                                        <th>用户名</th>
-                                        <th>等级</th>
-                                        <th>IP</th>
-                                        <th>上次登陆时间</th>
+                                        <th>编号</th>
+                                        <th style="width: 15%">主题</th>
+                                        <th>状态</th>
+                                        <th style="width: 20%">提交时间</th>
+                                        <th style="width: 20%">解决时间</th>
+                                        <th>管理员</th>
                                         <th>动作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     </tbody>
-
                                 </table>
 
-                            </div> <!-- end card-body-->
+                            </div> <!-- end card body-->
                         </div> <!-- end card -->
-                    </div> <!-- end col -->
+                    </div><!-- end col-->
                 </div>
+                <!-- end row-->
 
-            </div>
-
+            </div> <!-- container -->
 
         </div> <!-- content -->
 
@@ -91,7 +102,7 @@
     </div>
 
 </div>
-
+<!-- END wrapper -->
 
 <!-- App js -->
 <script src="__PUBLIC__/admin/js/vendor.min.js"></script>
@@ -112,9 +123,12 @@
 <script src="__PUBLIC__/admin/js/datatables.keytable.min.js"></script>
 <script src="__PUBLIC__/admin/js/datatables.select.min.js"></script>
 <!-- third party js ends -->
+
+<!-- demo app -->
 <script>
     $(document).ready(function () {
-        $('#admin-datatable').DataTable({
+        $('#bug-datatable').DataTable({
+            "order":[2,"desc"],
             // ajax:'/ThinkPHP/public/test.txt',
             // "processing": true,
             // // "serverSide":true,
@@ -136,22 +150,22 @@
                 }
             },
             ajax:{
-                url:"/ThinkPHP/public/static/data/admininfo.txt",
+                url:"/ThinkPHP/public/static/data/buginfo.txt",
                 dataSrc:"",
             },
             "columns": [
-                { "data": "adminid"},
-                { "data": "headpic" },
-                { "data": "username" },
-                { "data": "authority" },
-                { "data": "IP" },
-                { "data": "logintime"},
+                { "data": "bugid"},
+                { "data": "title" },
+                { "data": "state" },
+                { "data": "stime" },
+                { "data": "ftime" },
+                { "data": "adminname" },
                 { "data": function (data) {
                         return "<div class='btn-group dropdown'>"+
                             "<a href='javascript: void(0);' class='dropdown-toggle arrow-none btn btn-light btn-sm' data-toggle='dropdown' aria-expanded='false'>"+
                             "<i class='mdi mdi-dots-horizontal'></i></a>"+
                             "<div class='dropdown-menu dropdown-menu-right'>"+
-                            "<a class='dropdown-item' href='account'>"+
+                            "<a class='dropdown-item' href=''#'>"+
                             "<i class='mdi mdi-pencil mr-1 text-muted'></i>编辑</a>"+
                             "<a class='dropdown-item' href='#'>"+
                             "<i class='mdi mdi-delete mr-1 text-muted'></i>删除</a>"+
@@ -163,3 +177,5 @@
 </script>
 
 </body>
+
+</html>

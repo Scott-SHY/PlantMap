@@ -28,6 +28,8 @@ class Admin extends Model
             if($Admin->checkPassword($password)){
                 //登录
                 session('adminid',$Admin->getData('adminid'));
+                session('username',$Admin->getData('username'));
+                session('authority',$Admin->getData('authority'));
                 return true;
             }
         }
@@ -85,19 +87,38 @@ class Admin extends Model
 
     /**
      * 查询管理员信息
-     * @return admininfo 数组
+     * @return bool 数组
      * @throws
      */
     static public function saveData(){
+        //整个过程重构为静态方法
         //查询plant_info和plant_class的信息并保存到txt中
         $AdminInfo=new self();
 
-        //查询id,头像，用户名，权限，IP
+        //查询id,头像，用户名，权限，IP,登陆时间
         $admininfo=$AdminInfo
             ->alias('a')
-            ->field('a.adminid,a.headpic,a.username,CASE a.authority WHEN 1 THEN "超级管理员" ELSE "管理员" END as authority,a.IP')
+            ->field('a.adminid,a.headpic,a.username,CASE a.authority WHEN 1 THEN "超级管理员" ELSE "管理员" END as authority,a.IP,a.logintime')
             ->select();
 
-        return $admininfo;
+        $adminjson=json_encode($admininfo,JSON_UNESCAPED_UNICODE);
+        $fp=fopen("../public/static/data/admininfo.txt",'w+') or exit("Unable to open file!");
+        fwrite($fp,$adminjson);
+        fclose($fp);
+
+        return true;
+    }
+
+    /**
+     * 转换管理员等级
+     * @param $authority 管理员等级
+     * @return string 等级名
+     * @throws
+     */
+    public function getAuthorityLevel($authority){
+        if ($authority==1)
+            return "超级管理员";
+        else
+            return "管理员";
     }
 }

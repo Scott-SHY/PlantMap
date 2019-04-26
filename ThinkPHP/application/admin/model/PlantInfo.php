@@ -23,7 +23,7 @@ class PlantInfo extends Model
 
     /**
      * 获取信息并保存
-     * @return plantinfo 查询结果数组
+     * @return bool 查询结果数组
      * @throws
      */
     static public function saveData(){
@@ -40,6 +40,12 @@ class PlantInfo extends Model
 //            ->where('i.name=c.plantname')
             ->select();
 
-        return $plantinfo;
+        //存储json信息,$plantjson是json转换后的变量
+        $plantjson=json_encode($plantinfo,JSON_UNESCAPED_UNICODE);
+        $fp=fopen("../public/static/data/plantinfo.txt",'w+') or exit("Unable to open file!");
+        fwrite($fp,$plantjson);
+        fclose($fp);
+
+        return true;
     }
 }

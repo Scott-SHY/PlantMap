@@ -4,15 +4,17 @@
 namespace app\admin\controller;
 use think\Request;
 use app\admin\model\Admin;
-//use think\Controller;
+use think\Controller;
 
 /**
  * Class Login
  * @package app\admin\controller
  */
-class LoginController extends IndexController
+class LoginController extends Controller
 {
+
     //用户登录表单
+    //登录页
     public function index(){
         //验证用户是否登陆
 //        $adminid=session('adminid');
@@ -20,31 +22,32 @@ class LoginController extends IndexController
 //            return $this->error('please login first',url('Login/index'));
 //        }
 
-        //获取查询信息
-        $name=input('get.name');
-//        $name=Request::instance()->get('username');
+//        $name=input('name');
 
-        //每页显示五条数据
-        $pageSize=5;
-
-        //实例化Admin
-        $Admin=new Admin();
-
-        //按条件查询并调用分页
-        $admins=$Admin->where('username','like','%'.$name.'%')->paginate($pageSize,false,[
-            'query'=>[
-                'username'=>$name,
-            ],
-        ]);
-
-        //向V层传数据
-        $this->assign('admins',$admins);
-
-        //取回打包后的数据
-        $html=$this->fetch();
-
-        //将数据返回给用户
-        return $html;
+//        //获取查询信息
+//        $name=input('get.name');
+//
+//        //每页显示五条数据
+//        $pageSize=5;
+//
+//        //实例化Admin
+//        $Admin=new Admin();
+//
+//        //按条件查询并调用分页
+//        $admins=$Admin->where('username','like','%'.$name.'%')->paginate($pageSize,false,[
+//            'query'=>[
+//                'username'=>$name,
+//            ],
+//        ]);
+//
+//        //向V层传数据
+//        $this->assign('admins',$admins);
+//
+//        //取回打包后的数据
+//        $html=$this->fetch();
+//
+//        //将数据返回给用户
+//        return $html;
 
         //显示登录表单
 //        return $this->fetch();
@@ -69,18 +72,25 @@ class LoginController extends IndexController
 //        var_dump($admin);
 
         //返回登陆页
-//        return $this->fetch('index');
+        return $this->fetch();
     }
 
-    //处理用户提交的表单
+    //登录
     public function login(){
-//        return 'login';
+
+        //登陆后需要刷新admininfo文件，并重新绘制表格(已完成)
 
         //接收post信息
         $postData=Request::instance()->post();
 
         //改用M层Admin静态函数
         if(Admin::login($postData['username'],$postData['password'])){
+            //更新登录时间
+            $Admin=new Admin();
+            $Admin->where('adminid',session('adminid'))
+                ->update(['logintime'=>date('Y-m-d H:i:s'),'IP'=>Request::instance()->ip()]);
+            Admin::saveData();
+
             return $this->success('login success',url('Index/index'));
         }else{
             return $this->error('username or password incrrect',url('index'));
@@ -107,12 +117,18 @@ class LoginController extends IndexController
 //        }
     }
 
+    //注销
     public function logOut(){
         if(Admin::logOut()){
             return $this->success('logout success',url('index'));
         }else{
             return $this->error('logout error',url('index'));
         }
+    }
+
+    //注册页
+    public function register(){
+        return $this->fetch();
     }
 
     public function test(){

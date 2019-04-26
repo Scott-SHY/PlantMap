@@ -35,35 +35,37 @@
                             <a href="index.html">
                                 <span><img src="__PUBLIC__/admin/images/logo.png" alt="" height="22"></span>
                             </a>
-                            <p class="text-muted mb-4 mt-3">请输入邮箱和密码以进入管理界面</p>
+                            <p class="text-muted mb-4 mt-3">没有账号? 创建免费账号</p>
                         </div>
 
-                        <form action="{:url('login')}" method="post">
-
+                        <form action="index.html">
                             <div class="form-group mb-3">
-                                <label for="username">用户名</label>
-                                <input class="form-control" type="text" name="username" id="username" required=""
-                                       placeholder="Enter your username">
+                                <label for="fullname">用户名</label>
+                                <input class="form-control" type="text" id="fullname" placeholder="Enter your name"
+                                       required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <a href="pages-recoverpw.html" class="text-muted float-right">
-                                    <small></small>
-                                </a>
+                                <label for="emailaddress">邮箱地址</label>
+                                <input class="form-control" type="email" id="emailaddress" required
+                                       placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label for="password">密码</label>
-                                <input class="form-control" type="password" name="password" required="" id="password"
+                                <input class="form-control" type="password" required id="password"
                                        placeholder="Enter your password">
                             </div>
 
                             <div class="form-group mb-3">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
-                                    <label class="custom-control-label" for="checkbox-signin">记住我</label>
+                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup">
+                                    <label class="custom-control-label" for="checkbox-signup">我同意<a href="#" class="text-muted">条款与法规</a></label>
                                 </div>
                             </div>
 
                             <div class="form-group mb-0 text-center">
-                                <button class="btn btn-primary btn-block" type="submit">登陆</button>
+                                <button class="btn btn-primary btn-block" type="submit"> 注册</button>
                             </div>
 
                         </form>
@@ -73,9 +75,8 @@
 
                 <div class="row mt-3">
                     <div class="col-12 text-center">
-<!--                        <p class="text-muted"><a href="pages-recoverpw.html" class="text-muted ml-1">忘记密码?</a></p>-->
-                        <p class="text-muted">没有账户? <a href="register"
-                                                                        class="text-dark ml-1"><b>马上注册</b></a></p>
+                        <p class="text-muted">已经有账号? <a href="index"
+                                                                       class="text-dark ml-1"><b>登陆</b></a></p>
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->

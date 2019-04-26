@@ -5,7 +5,7 @@
                aria-haspopup="false" aria-expanded="false">
                 <img src="__PUBLIC__/admin/images/avatar-1.jpg" alt="user-image" class="rounded-circle">
                 <small class="pro-user-name ml-1">
-                    管理员
+                    {$username=session('username')}
                 </small>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
@@ -15,27 +15,19 @@
                 </div>
 
                 <!-- item-->
-                <a href="account.html" class="dropdown-item notify-item">
+                <a href="{:url('admin/Admin/account')}" class="dropdown-item notify-item">
                     <i class="fe-user"></i>
                     <span>我的账户</span>
                 </a>
 
                 <!-- item-->
-                <a href="setting.html" class="dropdown-item notify-item">
+                <a href="{:url('admin/Admin/setting')}" class="dropdown-item notify-item">
                     <i class="fe-settings"></i>
                     <span>设置</span>
                 </a>
 
                 <!-- item-->
-                <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                    <i class="fe-lock"></i>
-                    <span>锁屏</span>
-                </a>
-
-                <div class="dropdown-divider"></div>
-
-                <!-- item-->
-                <a href="login" class="dropdown-item notify-item">
+                <a href="{:url('admin/Login/logOut')}" class="dropdown-item notify-item">
                     <i class="fe-log-out"></i>
                     <span>注销</span>
                 </a>

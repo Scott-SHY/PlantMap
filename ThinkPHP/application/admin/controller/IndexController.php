@@ -15,13 +15,14 @@ class IndexController extends Controller
     {
         parent::__construct();
 
-//        //验证用户是否登陆
-//        if(!Admin::isLogin()){
-//            //循环跳转？？
-//            return $this->error('please login first',url('Login/index'));
-//        }
+        //验证用户是否登陆
+        if(!Admin::isLogin()){
+            //循环跳转？？
+            return $this->error('please login first',url('Login/index'));
+        }
     }
 
+    //初始化首页信息
     public function test(){
         $Website=new Website();
         $website=$Website->select();
@@ -30,13 +31,7 @@ class IndexController extends Controller
         return $this->fetch('index');
     }
 
-    public function index()
-    {
-        //初始化首页信息
-//        $Website=new Website();
-//        $website=$Website->select();
-//        $webdata=$website[0];
-
+    public function index(){
         //重构，用Model的静态方法
         $webdata=Website::Webinit();
         $this->assign("data",$webdata);

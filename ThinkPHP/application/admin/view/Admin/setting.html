@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>后台管理</title>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="__PUBLIC__/admin/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="__PUBLIC__/admin/css/datatables.bootstrap4.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/responsive.bootstrap4.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/select.bootstrap4.css" rel="stylesheet" type="text/css"/>
+
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="__PUBLIC__/admin/js/style.js"></script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    {include file="Public/sidemenu"/}
+<!--    <include src="sidemenu.html"></include>-->
+
+    <div class="content-page">
+        <div class="content">
+
+            {include file="Public/header"/}
+<!--            <include src="header.html"></include>-->
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="{:url('admin/Index/index')}">后台</a></li>
+                                    <li class="breadcrumb-item active">设置</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">设置</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h3 class="col-sm-2">设置</h3>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <h4 class="header-title ml-2 mt-2">科</h4>
+                                                        <p class="text-muted font-13 ml-2">
+                                                            在这里可以修改科的种类
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-primary ml-2 mt-3"
+                                                                data-toggle="modal"
+                                                                data-target="#familymodal">添加
+                                                        </button>
+                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <table id="family-datatable" class="table display dt-responsive">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th>编号</th>
+                                                        <th>科名</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <h4 class="header-title ml-2 mt-2">属</h4>
+                                                        <p class="text-muted font-13 ml-2">
+                                                            在这里可以修改属的种类
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-primary ml-2 mt-3"
+                                                                data-toggle="modal"
+                                                                data-target="#genusmodal">添加
+                                                        </button>
+                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <table id="genus-datatable" class="table display dt-responsive">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th>编号</th>
+                                                        <th>科名</th>
+                                                        <th>属名</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    {include file="Public/footer"/}
+<!--    <include src="footer.html"></include>-->
+
+</div>
+
+<div class="modal fade" id="familymodal" tabindex="-1" role="dialog" aria-labelledby="keModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keModalLabel">新建 科名</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form">
+                    <div class="form-group row">
+                        <label for="kename" class="col-sm-2">科 名:</label>
+                        <input type="text" class="my-form col-sm-10" id="kename">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="genusmodal" tabindex="-1" role="dialog" aria-labelledby="shuModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="shuModalLabel">新建 属名</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form">
+                    <div class="form-group row">
+                        <label class="col-sm-2">科 名:</label>
+                        <select class="custom-select col-sm-10">
+                            {volist name="family" id="data"}
+                            <option value="{$data.familyid}">{$data.name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="shuname" class="col-sm-2">属 名:</label>
+                        <input type="text" class="my-form col-sm-10" id="shuname">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+<!-- App js -->
+<script src="__PUBLIC__/admin/js/vendor.min.js"></script>
+<script src="__PUBLIC__/admin/js/app.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/jquery.datatables.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.bootstrap4.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.responsive.min.js"></script>
+<script src="__PUBLIC__/admin/js/responsive.bootstrap4.min.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.buttons.min.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.keytable.min.js"></script>
+<script src="__PUBLIC__/admin/js/datatables.select.min.js"></script>
+<script>$(document).ready(function () {
+    $("#family-datatable").DataTable({
+        dom: '<"top"f>rt<"bottom"p><"clear">',
+        info: false,
+        select: {style: "single"},
+        "oLanguage" : { // 国际化配置
+            "sProcessing" : "正在获取数据，请稍后...",
+            "sLengthMenu" : "显示 _MENU_ 条",
+            "sZeroRecords" : "没有找到数据",
+            "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+            "sInfoEmpty" : "记录数为0",
+            "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
+            "sInfoPostFix" : "",
+            "sSearch" : "查询",
+            "sUrl" : "",
+            "oPaginate" : {
+                "sFirst" : "第一页",
+                "sPrevious" : "上一页",
+                "sNext" : "下一页",
+                "sLast" : "最后一页"
+            }
+        },
+        ajax:{
+            url:"/ThinkPHP/public/static/data/familyinfo.txt",
+            dataSrc:"",
+        },
+        "columns": [
+            { "data": "familyid"},
+            { "data": "name" },
+        ]
+    }),
+        $('#genus-datatable').DataTable({
+            dom: '<"top"f>rt<"bottom"p><"clear">',
+            info: false,
+            select: {style: "single"},
+            "oLanguage" : { // 国际化配置
+                "sProcessing" : "正在获取数据，请稍后...",
+                "sLengthMenu" : "显示 _MENU_ 条",
+                "sZeroRecords" : "没有找到数据",
+                "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+                "sInfoEmpty" : "记录数为0",
+                "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
+                "sInfoPostFix" : "",
+                "sSearch" : "查询",
+                "sUrl" : "",
+                "oPaginate" : {
+                    "sFirst" : "第一页",
+                    "sPrevious" : "上一页",
+                    "sNext" : "下一页",
+                    "sLast" : "最后一页"
+                }
+            },
+            ajax:{
+                url:"/ThinkPHP/public/static/data/genusinfo.txt",
+                dataSrc:"",
+            },
+            "columns": [
+                { "data": "genusid"},
+                { "data": "familyname" },
+                { "data": "name"},
+            ]
+        });
+});</script>
+
+</html>
