@@ -117,7 +117,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form action="test" role="form" method="post">
+                <form action="insert" role="form" method="post">
                     <div class="form-group row">
                         <label for="plantname" class="col-sm-2">名 称:</label>
                         <input type="text" class="my-form col-sm-10" name="plantname" id="plantname"
@@ -232,27 +232,29 @@
                 dataSrc: "",
             },
             "columns": [
-                {"data": "name"},
+                {"data": "plantname"},
                 {"data": "alias"},
                 {"data": "sciname"},
                 {"data": "area"},
                 {"data": "familyname"},
                 {"data": "genusname"},
                 {"data": "introduce"},
-                {
-                    "data": function (data) {
-                        return "<div class='btn-group dropdown'>" +
-                            "<a href='javascript: void(0);' class='dropdown-toggle arrow-none btn btn-light btn-sm' data-toggle='dropdown' aria-expanded='false'>" +
-                            "<i class='mdi mdi-dots-horizontal'></i></a>" +
-                            "<div class='dropdown-menu dropdown-menu-right'>" +
-                            "<a class='dropdown-item' href='manage'>" +
-                            "<i class='mdi mdi-pencil mr-1 text-muted'></i>编辑</a>" +
-                            "<a class='dropdown-item' href='#'>" +
-                            "<i class='mdi mdi-delete mr-1 text-muted'></i>删除</a>" +
-                            "</div></div>"
-                    }
-                },
-            ]
+                {"data": null},
+            ],
+            columnDefs: [{
+                //   指定第最后一列
+                targets: -1,
+                render: function(data, type, row, meta) {
+                    return '<a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">' +
+                        '<i class="mdi mdi-dots-horizontal"></i></a>' +
+                        '<div class="dropdown-menu dropdown-menu-right">' +
+                        '<a class="dropdown-item" href="manage?plantname=' + row.plantname + '">' +
+                        '<i class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>' +
+                        '<a class="dropdown-item" href="manage?plantname=' + row.plantname + '">' +
+                        '<i class="mdi mdi-delete mr-1 text-muted"></i>删除</a>' +
+                        '</div></div>'
+                }
+            }]
         });
     });
 

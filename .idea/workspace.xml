@@ -2,33 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b64a6a94-f590-4422-88f7-17b18099a5e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/ChartController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PicInfo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantMap.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/account.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/setting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Bug/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Bug/manage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Chart/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Map.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/BugController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/BugController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Bug.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Bug.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Family.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Family.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Genus.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/Genus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/sidemenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/sidemenu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/public/file.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThinkPHP/public/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+            <state relative-caret-position="130">
+              <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
               <folding>
                 <element signature="e#40#67#0#PHP" expanded="true" />
               </folding>
@@ -64,44 +45,42 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="1500">
+              <caret line="100" column="121" selection-start-line="100" selection-start-column="121" selection-end-line="100" selection-end-column="121" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php">
+        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state relative-caret-position="503">
+              <caret line="278" column="7" selection-start-line="260" selection-start-column="4" selection-end-line="278" selection-end-column="7" />
               <folding>
-                <element signature="e#40#66#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php">
+        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/account.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="73" column="160" selection-start-line="73" selection-start-column="160" selection-end-line="73" selection-end-column="160" />
+            <state relative-caret-position="1277">
+              <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
               <folding>
-                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="e#40#58#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,14 +95,20 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>name</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ThinkPHP/application/index/controller/LoginController.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/index/view/Login/index.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/index/controller/IndexController.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/index/controller/TeacherController.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/index/view/index.html" />
@@ -144,7 +129,6 @@
         <option value="$PROJECT_DIR$/ThinkPHP/public/static/index/css/app.min.css" />
         <option value="$PROJECT_DIR$/ThinkPHP/public/static/admin/css/style.css" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/edit.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/public/test.txt" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Websize.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Index/index.html" />
@@ -159,20 +143,23 @@
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantMap.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Family.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Genus.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/register.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/index.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/IndexController.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/header.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/sidemenu.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Bug.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/BugController.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/account.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantAdmin.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/model/Map.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html" />
       </list>
     </option>
   </component>
@@ -393,7 +380,7 @@
       <option name="presentableId" value="Default" />
       <updated>1555853301327</updated>
       <workItem from="1555853302509" duration="117000" />
-      <workItem from="1555853420485" duration="116966000" />
+      <workItem from="1555853420485" duration="141466000" />
     </task>
     <task id="LOCAL-00001" summary="4.22 commit">
       <created>1555864550089</created>
@@ -416,11 +403,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556160652927</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="4.27 commit">
+      <created>1556295963155</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556295963155</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117083000" />
+    <option name="totallyTimeSpent" value="141583000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -486,34 +480,10 @@
     <MESSAGE value="4.22 commit" />
     <MESSAGE value="4.23 commit" />
     <MESSAGE value="4.25 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.25 commit" />
+    <MESSAGE value="4.27 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.27 commit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="6" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/PlantInfo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/thinkphp/library/think/model/relation/BelongsToMany.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="187" column="20" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/public/static/index/css/app.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -602,9 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/public/static/data/plantinfo.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/public/static/data/admininfo.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -669,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/setting.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="182" column="34" lean-forward="true" selection-start-line="182" selection-start-column="34" selection-end-line="182" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/index/view/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -687,13 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantMap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
@@ -718,24 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret line="142" column="71" selection-start-line="142" selection-start-column="71" selection-end-line="142" selection-end-column="71" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Login/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="873">
@@ -745,13 +680,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/config.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/sidemenu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -777,53 +705,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="182" column="34" lean-forward="true" selection-start-line="182" selection-start-column="34" selection-end-line="182" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/public/static/data/plantinfo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" lean-forward="true" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="50" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="50" />
+        <state relative-caret-position="329">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php">
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Public/sidemenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="140" column="92" lean-forward="true" selection-start-line="140" selection-start-column="92" selection-end-line="140" selection-end-column="92" />
-          <folding>
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="449">
+          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
+        <state relative-caret-position="17">
           <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php">
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/public/static/index/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        <state relative-caret-position="172">
+          <caret line="3519" column="1" selection-start-line="3519" selection-start-column="1" selection-end-line="3519" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantMap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="31" column="66" lean-forward="true" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="88" column="30" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="30" />
           <folding>
-            <element signature="e#40#67#0#PHP" expanded="true" />
+            <element signature="e#40#66#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Admin/account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="268">
           <caret line="73" column="160" selection-start-line="73" selection-start-column="160" selection-end-line="73" selection-end-column="160" />
           <folding>
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
@@ -832,27 +789,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/Admin.php">
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
+        <state relative-caret-position="503">
+          <caret line="278" column="7" selection-start-line="260" selection-start-column="4" selection-end-line="278" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/AdminController.php">
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state relative-caret-position="1277">
+          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
           <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
+            <element signature="e#40#58#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/PlantInfo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="570">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/model/Map.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/view/Plant_Info/manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="100" column="121" selection-start-line="100" selection-start-column="121" selection-end-line="100" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/application/admin/controller/PlantInfoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+          <folding>
+            <element signature="e#40#67#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

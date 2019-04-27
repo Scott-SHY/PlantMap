@@ -16,7 +16,7 @@ class PlantInfo extends Model
      * @throws
      */
     public function getPlantClass(){
-        $plantname=$this->getData('name');
+        $plantname=$this->getData('plantname');
         $PlantClass=PlantClass::get($plantname);
         return $PlantClass;
     }
@@ -35,8 +35,8 @@ class PlantInfo extends Model
         //where这里不用也可以
         $plantinfo=$PlantInfo
             ->alias('i')
-            ->join('plant_class c','c.plantname=i.name')
-            ->field('i.name,i.alias,i.sciname,i.area,c.familyname,c.genusname,i.introduce')
+            ->join('plant_class c','c.plantname=i.plantname')
+            ->field('i.plantname,i.alias,i.sciname,i.area,c.familyname,c.genusname,i.introduce')
 //            ->where('i.name=c.plantname')
             ->select();
 

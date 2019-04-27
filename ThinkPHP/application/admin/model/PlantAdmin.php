@@ -3,8 +3,13 @@
 
 namespace app\admin\model;
 
+use think\Model;
 
-class PlantAdmin
+/**
+ * Class PlantAdmin
+ * @package app\admin\model
+ */
+class PlantAdmin extends Model
 {
 
 }

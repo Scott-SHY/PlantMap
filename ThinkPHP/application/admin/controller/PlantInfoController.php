@@ -4,6 +4,8 @@
 namespace app\admin\controller;
 use app\admin\model\Family;
 use app\admin\model\Genus;
+use app\admin\model\Map;
+use app\admin\model\PlantAdmin;
 use app\admin\model\PlantClass;
 use app\admin\model\PlantInfo;
 use app\admin\model\PlantMap;
@@ -25,7 +27,7 @@ class PlantInfoController extends IndexController
         //更新数据
         PlantInfo::saveData();
 
-        //模态框下拉列表的数据
+//        模态框下拉列表的数据
         $family=Family::all();
         $genus=Genus::all();
         $this->assign('family',$family);
@@ -57,11 +59,19 @@ class PlantInfoController extends IndexController
 
     }
 
-    public function test(){
+    //插入数据
+    public function insert(){
+
+        //模态框下拉列表的数据
+        $family=Family::all();
+        $genus=Genus::all();
+        $this->assign('family',$family);
+        $this->assign('genus',$genus);
+
 //        var_dump($_POST);
         //接收post的数据
         $plantdata=Request::instance()->post();
-        var_dump($plantdata['map']);
+//        var_dump($plantdata['map']);
 
         //插入数据后需要刷新plantinfo文件，并重新绘制表格（未完成）
 
@@ -70,50 +80,80 @@ class PlantInfoController extends IndexController
         $PlantClass->familyname=Family::getFamilyName($plantdata['family_id'])->getData('name');
         $PlantClass->genusname=Genus::getGenusName($plantdata['genus_id'])->getData('name');
         $PlantClass->plantname=$plantdata['plantname'];
+//        var_dump($PlantClass);
         $PlantClass->save();
 
         //插入信息到plant_info表
         $PlantInfo=new PlantInfo();
-        $PlantInfo->name=$plantdata['plantname'];
+        $PlantInfo->plantname=$plantdata['plantname'];
         $PlantInfo->alias=$plantdata['alias'];
         $PlantInfo->sciname=$plantdata['sciname'];
         $PlantInfo->area=$plantdata['area'];
         $PlantInfo->models=$plantdata['models'];
         $PlantInfo->introduce=$plantdata['introduce'];
+//        var_dump($PlantInfo);
         $PlantInfo->save();
 
         //插入信息到plant_map表
-        $PlantMap=new PlantMap();
+//        $PlantMap=new PlantMap();
+//        var_dump($PlantInfo->name);
         foreach ($plantdata['map'] as $map) {
-            $PlantMap->plantname = $PlantInfo->name;
+            $PlantMap=new PlantMap();
+            $PlantMap->plantname = $PlantInfo->plantname;
             $PlantMap->mapname = $map;
+//            var_dump($PlantMap);
             $PlantMap->save();
         }
 
+        //插入信息到plant_admin表
+        $PlantAdmin=new PlantAdmin();
+        $plantid=$PlantInfo
+                ->field('plantid')
+                ->where('plantname',$plantdata['plantname'])
+                ->select();
+        $PlantAdmin->plantid=$plantid[0]->getData('plantid');
+        $PlantAdmin->adminid=session('adminid');
+        $PlantAdmin->create_time=date('Y-m-d H:i:s');
+        $PlantAdmin->update_time=date('Y-m-d H:i:s');
+        $PlantAdmin->save();
+//        var_dump($PlantAdmin);
 
-//        return '插入成功'.$PlantInfo->plantid;
-//        $plantname=input('post.plantname');
-//        $alias=input('post.alias');
-//        $sciname=input('post.sciname');
-//        $area=input('post.area');
-//        $family=input('post.family_id');
-//        $genus=input('post.genus_id');
-//        $map=input('post.map/a');
-//        var_dump($plantname);
-//        var_dump($alias);
-//        var_dump($sciname);
-//        var_dump($area);
-//        var_dump($family);
-//        var_dump($genus);
-//        var_dump($map);
+
+        //保存数据的调用次序还需修改
+        PlantInfo::saveData();
+        return $this->fetch('index');
+
     }
 
     public function manage(){
+        //模态框下拉列表的数据
+        $family=Family::all();
+        $genus=Genus::all();
+        $this->assign('family',$family);
+        $this->assign('genus',$genus);
+
+        //根据传递过来的plantname匹配对应PlantInfo对象
+        $plantname=Request::instance()->param();
+        $PlantInfo=PlantInfo::get($plantname);
+        $this->assign('plantinfo',$PlantInfo);
+
+        //根据传递过来的plantname匹配对应PlantMap多个对象
+        $PlantMap=PlantMap::all($plantname);
+        $this->assign('plantmap',$PlantMap);
+
+        //根据传递过来的plantname匹配对应Map里的值
+        $map=Map::all();
+        $this->assign('map',$map);
+
+        //根据传递过来的plantname匹配对应MPlantClass里的值
+        $PlantClass=PlantClass::get($plantname);
+        $this->assign('plantclass',$PlantClass);
+
         return $this->fetch();
     }
 
     public function add(){
-        return $this->fetch('manage');
+        return $this->fetch();
     }
 
     //重构到静态方法中

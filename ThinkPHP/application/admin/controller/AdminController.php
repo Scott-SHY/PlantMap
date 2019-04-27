@@ -30,6 +30,11 @@ class AdminController extends IndexController
         return $this->fetch();
     }
 
+    /**
+     * 匹配Admin信息，并传递给视图
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function account(){
         $map=session('adminid');
         $Admin=Admin::get($map);
