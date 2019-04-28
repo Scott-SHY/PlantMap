@@ -35,8 +35,9 @@ class PlantInfo extends Model
         //where这里不用也可以
         $plantinfo=$PlantInfo
             ->alias('i')
-            ->join('plant_class c','c.plantname=i.plantname')
-            ->field('i.plantname,i.alias,i.sciname,i.area,c.familyname,c.genusname,i.introduce')
+            ->join('plant_class c','c.plantid=i.plantid')
+            ->join('plant_admin a','a.plantid=i.plantid')
+            ->field('i.plantname,i.alias,i.sciname,i.area,c.familyname,c.genusname,a.updatetime')
 //            ->where('i.name=c.plantname')
             ->select();
 

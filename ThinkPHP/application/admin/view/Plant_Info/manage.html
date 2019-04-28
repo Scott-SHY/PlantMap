@@ -56,17 +56,17 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form>
+                                <form action="update" method="post">
                                     <div class="row mb-3">
                                         <h3 class="col-sm-2 text-center">植物信息</h3>
                                         <div class="text-right">
-                                            <button type="submit" class="btn btn-primary mx-1" data-toggle="modal"
+                                            <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
                                                     data-target="#addcontactmodal"><i class="mdi mdi-plus mr-2"></i>新 建
                                             </button>
                                             <button type="submit" class="btn btn-success mx-1"><i
-                                                    class="mdi mdi-content-save mr-2"></i>保 存
+                                                    class="mdi mdi-content-save mr-2"></i>更 新
                                             </button>
-                                            <button type="button" class="btn btn-danger mx-1"><i
+                                            <button type="submit" class="btn btn-danger mx-1" formaction="delete"><i
                                                     class="mdi mdi-delete mr-2"></i>删 除
                                             </button>
                                         </div>
@@ -74,61 +74,61 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
+                                                <label class="col-sm-2">编 号:</label>
+                                                <input type="text" class="my-form col-sm-9" name="plantid"
+                                                       value="{$plantinfo->getData('plantid')}" readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-sm-2">名 称:</label>
-                                                <input type="text" class="my-form col-sm-9"
+                                                <input type="text" class="my-form col-sm-9" name="plantname"
                                                        value="{$plantinfo->getData('plantname')}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2">别 名:</label>
-                                                <input type="text" class="my-form col-sm-9"
+                                                <input type="text" class="my-form col-sm-9" name="alias"
                                                        value="{$plantinfo->getData('alias')}">
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2">学 名:</label>
-                                                <input type="text" class="my-form col-sm-9"
+                                                <input type="text" class="my-form col-sm-9" name="sciname"
                                                        value="{$plantinfo->getData('sciname')}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2">分 布:</label>
-                                                <input type="text" class="my-form col-sm-9"
+                                                <input type="text" class="my-form col-sm-9" name="area"
                                                        value="{$plantinfo->getData('area')}">
                                                 <div class="form-group">
                                                     <div class="col-lg-12">
                                                         {volist name="map" id="map"}
                                                         <input type="checkbox" name="map[]"
                                                                id="map_name_{$map->getData('mapname')}"
-                                                               value="{$map->getData('mapname')}" {eq name="$map->getIsChecked($plantinfo)" value="true"}checked="checked"{/eq}/>
-                                                        <label for="map_name_{$map->getData('mapname')}" style="width: 84px">{$map->getData('mapname')}</label>
-                                                        <!--                                                        <input type="checkbox"><label>北苑</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>南苑</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>牌坊</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>图书馆</label>-->
-                                                        <!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;                                                    <div class="col-sm-12">&ndash;&gt;-->
-                                                        <!--                                                        <input type="checkbox"><label>教学楼</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>理科楼</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>行政楼</label>-->
-                                                        <!--                                                        <input type="checkbox"><label>逸夫楼</label>-->
+                                                               value="{$map->getData('mapname')}" {eq
+                                                               name="$map->getIsChecked($plantinfo)" value="true"
+                                                               }checked="checked" {/eq}/>
+                                                        <label for="map_name_{$map->getData('mapname')}"
+                                                               style="width: 84px">{$map->getData('mapname')}</label>
                                                         {/volist}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2">科 :</label>
-                                                <select class="custom-select col-sm-6" name="familyid" id="familyid" required>
-                                                    <option value="0">{$plantclass->getData('familyname')}</option>
+                                                <select class="custom-select col-sm-3" name="familyid" id="familyid"
+                                                        required>
+                                                    <option>{$plantclass->getData('familyname')}</option>
                                                     {volist name="family" id="data2"}
                                                     <option value="{$data2.familyid}">{$data2.name}</option>
                                                     {/volist}
                                                 </select>
-<!--                                                <button type="submit" class="btn btn-primary ml-4">新建 科</button>-->
-                                            </div>
-                                            <div class="form-group">
+                                                <!--                                                <button type="submit" class="btn btn-primary ml-4">新建 科</button>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
                                                 <label class="col-sm-2">属 :</label>
-                                                <select class="custom-select col-sm-6" name="genusid" id="genusid" required>
+                                                <select class="custom-select col-sm-3" name="genusid" id="genusid"
+                                                        required>
                                                     <option selected>{$plantclass->getData('genusname')}</option>
                                                 </select>
-<!--                                                <button type="submit" class="btn btn-primary ml-4">新建 属</button>-->
+                                                <!--                                                <button type="submit" class="btn btn-primary ml-4">新建 属</button>-->
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -140,13 +140,13 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2">模 型:</label>
-                                                    <input type="file" class="form-control col-sm-10"
+                                                    <input type="file" class="form-control col-sm-10" name="models"
                                                            value="{$plantinfo->getData('models')}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2">介 绍:</label>
-                                                <textarea class="form-control col-sm-10" rows="10">{$plantinfo->getData('introduce')}</textarea>
+                                                <textarea class="form-control col-sm-10" rows="10" name="introduce">{$plantinfo->getData('introduce')}</textarea>
                                             </div>
                                         </div>
                                     </div>

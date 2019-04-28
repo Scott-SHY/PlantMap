@@ -76,13 +76,13 @@
                                        style="width: 100%">
                                     <thead>
                                     <tr>
-                                        <th style="width: 9%">名称</th>
-                                        <th style="width: 12%">别名</th>
-                                        <th style="width: 9%">学名</th>
-                                        <th style="width: 9%">分布</th>
-                                        <th style="width: 9%">科</th>
-                                        <th style="width: 9%">属</th>
-                                        <th style="width: 33%">介绍</th>
+                                        <th style="width: 12%">名称</th>
+                                        <th style="width: 15%">别名</th>
+                                        <th style="width: 15%">学名</th>
+                                        <th style="width: 15%">分布</th>
+                                        <th style="width: 10%">科</th>
+                                        <th style="width: 10%">属</th>
+                                        <th style="width: 13%">更新时间</th>
                                         <th style="width: 10%">动作</th>
                                     </tr>
                                     </thead>
@@ -152,7 +152,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 ">科 :</label>
-                        <select class="custom-select col-sm-10" name="family_id" id="family_id">
+                        <select class="custom-select col-sm-10" name="family_id" id="family_id" required>
                             <option value="0">请选择科</option>
                             {volist name="family" id="data1"}
                             <option value="{$data1.familyid}">{$data1.name}</option>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 ">属 :</label>
-                        <select class="custom-select col-sm-10" name="genus_id" id="genus_id">
+                        <select class="custom-select col-sm-10" name="genus_id" id="genus_id" required>
                             <option value="0">请选择属</option>
                         </select>
                     </div>
@@ -238,7 +238,7 @@
                 {"data": "area"},
                 {"data": "familyname"},
                 {"data": "genusname"},
-                {"data": "introduce"},
+                {"data": "updatetime"},
                 {"data": null},
             ],
             columnDefs: [{
@@ -250,7 +250,7 @@
                         '<div class="dropdown-menu dropdown-menu-right">' +
                         '<a class="dropdown-item" href="manage?plantname=' + row.plantname + '">' +
                         '<i class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>' +
-                        '<a class="dropdown-item" href="manage?plantname=' + row.plantname + '">' +
+                        '<a class="dropdown-item" href="deleteT?plantname=' + row.plantname + '">' +
                         '<i class="mdi mdi-delete mr-1 text-muted"></i>删除</a>' +
                         '</div></div>'
                 }

@@ -93,7 +93,7 @@
                                                         data-target="#editnamemodal">修改名称
                                                 </button>
                                                 <button type="button" class="btn btn-primary ml-4" data-toggle="modal"
-                                                        data-target="#editpwdmodal">修改密码
+                                                        data-target="#changepwdmodal">修改密码
                                                 </button>
                                                 <button type="submit" class="btn btn-success ml-4">保存头像</button>
                                             </div>
@@ -144,7 +144,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="editpwdmodal" tabindex="-1" role="dialog" aria-labelledby="myPwdModalLabel"
+<div class="modal fade" id="changepwdmodal" tabindex="-1" role="dialog" aria-labelledby="myPwdModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -153,18 +153,18 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form role="form">
+                <form role="form" action="changepwd" method="post">
                     <div class="form-group row">
-                        <label for="pwd" class="col-sm-2">原密码:</label>
-                        <input type="password" class="my-form col-sm-10" id="pwd" placeholder="原密码">
+                        <label for="oldpwd" class="col-sm-2">原密码:</label>
+                        <input type="password" class="my-form col-sm-10" name="oldpwd" id="oldpwd" placeholder="原密码">
                     </div>
                     <div class="form-group row">
                         <label for="newpwd" class="col-sm-2">新密码:</label>
-                        <input type="text" class="my-form col-sm-10" id="newpwd" placeholder="输入新密码">
+                        <input type="text" class="my-form col-sm-10" name="newpwd" id="newpwd" placeholder="输入新密码">
                     </div>
                     <div class="form-group row">
                         <label for="againpwd" class="col-sm-2">再次输入密码:</label>
-                        <input type="text" class="my-form col-sm-10" id="againpwd" placeholder="再次输入密码">
+                        <input type="text" class="my-form col-sm-10" name="againpwd" id="againpwd" placeholder="再次输入密码">
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success waves-effect waves-light" href="#">保存</button>

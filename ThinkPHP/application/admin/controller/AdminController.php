@@ -5,6 +5,8 @@ namespace app\admin\controller;
 use app\admin\model\Admin;
 use app\admin\model\Family;
 use app\admin\model\Genus;
+use think\Request;
+
 /**
  * Class AdminController
  * @package app\admin\controller
@@ -19,6 +21,11 @@ class AdminController extends IndexController
         return $this->fetch();
     }
 
+    /**
+     * setting视图初始化，显示科属信息
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function setting(){
         $this->savefamilydata();
         $this->savegenusdata();
@@ -36,15 +43,34 @@ class AdminController extends IndexController
      * @throws \think\exception\DbException
      */
     public function account(){
-        $map=session('adminid');
-        $Admin=Admin::get($map);
+        $map=Request::instance()->param('adminid');
+        if(is_null($map)){
+            //从header跳转过来，调用session中的值
+            $map=session('adminid');
+            $Admin=Admin::get($map);
+        }else{
+            //从index跳转过来，调用传递值
+            $Admin=Admin::get($map);
+        }
         if(!is_null($Admin)){
             $this->assign('admin',$Admin);
         }
         return $this->fetch();
     }
 
-    //setting页查询科名信息
+    /**
+     * 修改密码
+     */
+    public function changepwd(){
+        $admin=Request::instance()->param();
+        $Admin=Admin::get($admin);
+        var_dump($admin);
+        var_dump($Admin);
+    }
+
+    /**
+     * 查询科信息并保存到文件中
+     */
     public function savefamilydata(){
         $familyinfo=Family::saveFamilyData();
 
@@ -57,7 +83,9 @@ class AdminController extends IndexController
 //        return $this->fetch('setting');
     }
 
-    //setting页查询属名信息
+    /**
+     * 查询属信息并保存到文件中
+     */
     public function savegenusdata(){
         $genusinfo=Genus::saveGenusData();
 
