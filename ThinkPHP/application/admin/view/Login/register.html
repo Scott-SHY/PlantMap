@@ -38,34 +38,35 @@
                             <p class="text-muted mb-4 mt-3">没有账号? 创建免费账号</p>
                         </div>
 
-                        <form action="index.html">
+                        <form action="addAdmin" method="post">
                             <div class="form-group mb-3">
-                                <label for="fullname">用户名</label>
-                                <input class="form-control" type="text" id="fullname" placeholder="Enter your name"
+                                <label for="username">用户名</label>
+                                <input class="form-control" type="text" name="username" id="username" placeholder="Enter your name"
                                        required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="emailaddress">邮箱地址</label>
-                                <input class="form-control" type="email" id="emailaddress" required
-                                       placeholder="Enter your email">
-                            </div>
-
-                            <div class="form-group mb-3">
                                 <label for="password">密码</label>
-                                <input class="form-control" type="password" required id="password"
+                                <input class="form-control" type="password" name="password" id="password" required
                                        placeholder="Enter your password">
                             </div>
 
                             <div class="form-group mb-3">
+                                <label for="againpassword">再次输入密码</label>
+                                <input class="form-control" type="password" name="againpassword" id="againpassword" required
+                                       placeholder="Enter your password angain">
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup">
-                                    <label class="custom-control-label" for="checkbox-signup">我同意<a href="#" class="text-muted">条款与法规</a></label>
+                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup" required>
+                                    <label class="custom-control-label" for="checkbox-signup">我同意<a href="#"
+                                                                                                    class="text-muted">条款与法规</a></label>
                                 </div>
                             </div>
 
                             <div class="form-group mb-0 text-center">
-                                <button class="btn btn-primary btn-block" type="submit"> 注册</button>
+                                <button class="btn btn-primary btn-block" type="submit">注册</button>
                             </div>
 
                         </form>
@@ -76,7 +77,7 @@
                 <div class="row mt-3">
                     <div class="col-12 text-center">
                         <p class="text-muted">已经有账号? <a href="index"
-                                                                       class="text-dark ml-1"><b>登陆</b></a></p>
+                                                        class="text-dark ml-1"><b>登陆</b></a></p>
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->

@@ -53,9 +53,9 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <form>
+                                <form action="deleteAdmin" method="post">
                                     <div class="mb-3">
-                                        <h3 class="col-sm-2 text-center">我的信息</h3>
+                                        <h3 class="col-sm-2 text-center">用户信息</h3>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -70,32 +70,33 @@
                                                        readonly="" name="password" id="password">
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2">等 级:</label>
-                                                <input type="text" class="my-form col-sm-8" placeholder="{$admin->getAuthorityLevel($admin->getData('authority'))}"
-                                                       readonly="" name="authority" id="authority">
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="col-sm-2">IP:</label>
                                                 <input type="text" class="my-form col-sm-8" placeholder="{$admin->getData('IP')}"
                                                        readonly="" name="IP" id="IP">
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2">等 级:</label>
+                                                <input type="text" class="my-form col-sm-8" placeholder="{$admin->getAuthorityLevel($admin->getData('authority'))}"
+                                                       readonly="" name="authority" id="authority">
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group" align="center">
-                                                <img src="__PUBLIC__/admin/images/avatar-1.jpg" class="mb-4">
-                                                <div class="form-group">
+                                            <div class="form-group">
+<!--                                                <img src="__PUBLIC__/admin/images/avatar-1.jpg" class="mb-4">-->
+                                                <div class="form-group col-sm-12">
                                                     <label class="col-sm-2">头 像:</label>
-                                                    <input type="file" class="col-sm-6">
+                                                    <img src="__PUBLIC__/admin/images/avatar-1.jpg" class="mb-4 ml-5">
+<!--                                                    <input type="file" class="col-sm-6">-->
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-primary ml-4" data-toggle="modal"
-                                                        data-target="#editnamemodal">修改名称
+                                            <div class="form-group mt-5">
+                                                <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
+                                                        data-target="#changeAuthoritymodal">修改权限
                                                 </button>
-                                                <button type="button" class="btn btn-primary ml-4" data-toggle="modal"
-                                                        data-target="#changepwdmodal">修改密码
+                                                <button type="button" class="btn btn-danger ml-5" data-toggle="modal"
+                                                        data-target="#deletemodal">删除账号
                                                 </button>
-                                                <button type="submit" class="btn btn-success ml-4">保存头像</button>
+<!--                                                <button type="submit" class="btn btn-success ml-4">保存头像</button>-->
                                             </div>
                                         </div>
                                     </div>
@@ -116,23 +117,27 @@
 
 </div>
 
-<div class="modal fade" id="editnamemodal" tabindex="-1" role="dialog" aria-labelledby="myNameModalLabel"
+<div class="modal fade" id="changeAuthoritymodal" tabindex="-1" role="dialog" aria-labelledby="changeAuthorityModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myNameModalLabel">修改名称</h4>
+                <h4 class="modal-title" id="changeAuthorityModalLabel">修改权限</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form role="form">
+                <form role="form" action="changeAuthority" method="post">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-2">原名称:</label>
-                        <input type="text" class="my-form col-sm-10" id="name" placeholder="管理员" readonly="">
+                        <label class="col-sm-3">账  号:</label>
+                        <input type="text" class="my-form col-sm-8" placeholder="{$admin->getData('username')}"
+                               readonly="" name="adminname" id="adminname">
                     </div>
                     <div class="form-group row">
-                        <label for="newname" class="col-sm-2">新名称:</label>
-                        <input type="text" class="my-form col-sm-10" id="newname" placeholder="输入新名称">
+                        <label class="col-sm-3">修改权限:</label>
+                        <select class="custom-select col-sm-8" name="cauthority" id="cauthority">
+                            <option selected>{$authority=$admin->getData('authority')}</option>
+                            <option>{$authority==1?2:1}</option>
+                        </select>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success waves-effect waves-light" href="#">保存</button>
@@ -144,30 +149,21 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="changepwdmodal" tabindex="-1" role="dialog" aria-labelledby="myPwdModalLabel"
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myPwdModalLabel">修改密码</h4>
+                <h4 class="modal-title" id="deleteModalLabel">删除账号</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form role="form" action="changepwd" method="post">
+                <form role="form" action="deleteAdmin" method="post">
                     <div class="form-group row">
-                        <label for="oldpwd" class="col-sm-2">原密码:</label>
-                        <input type="password" class="my-form col-sm-10" name="oldpwd" id="oldpwd" placeholder="原密码" required>
-                    </div>
-                    <div class="form-group row">
-                        <label for="newpwd" class="col-sm-2">新密码:</label>
-                        <input type="password" class="my-form col-sm-10" name="newpwd" id="newpwd" placeholder="输入新密码" required>
-                    </div>
-                    <div class="form-group row">
-                        <label for="againpwd" class="col-sm-2">再次输入密码:</label>
-                        <input type="password" class="my-form col-sm-10" name="againpwd" id="againpwd" placeholder="再次输入密码" required>
+                        <h3 class="col-sm-12">确认删除？</h3>
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-success waves-effect waves-light" href="#">保存</button>
+                        <button type="submit" class="btn btn-danger waves-effect waves-light" href="#">删除</button>
                         <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
                     </div>
                 </form>

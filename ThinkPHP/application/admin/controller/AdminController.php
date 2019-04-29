@@ -14,11 +14,69 @@ use think\Request;
 class AdminController extends IndexController
 {
     public function index(){
+        if(session('authority')==1){
+            Admin::saveData();
+        }else{
+            return $this->error('您没有权限访问此页面');
+        }
         //每次调用方法都会更新一遍数据？效率低下，应该把静态方法放在增删改操作之后调用
         //更新数据
-        Admin::saveData();
+//        Admin::saveData();
 
         return $this->fetch();
+    }
+
+    /**
+     * 超级管理员对此有操作权限
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function manage(){
+        if(session('authority')==2){
+            return $this->error('您没有权限访问此页面');
+        }
+        $map=Request::instance()->param('adminid');
+        $Admin=Admin::get($map);
+        //被编辑的管理员id
+        session('manageadminid',$Admin->adminid);
+
+        if(!is_null($Admin)){
+            $this->assign('admin',$Admin);
+        }
+        return $this->fetch();
+    }
+
+    /**
+     * 更改管理员权限
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
+    public function changeAuthority(){
+        $cauthority=Request::instance()->post();
+        $Admin=Admin::get(session('manageadminid'));
+        $Admin->authority=$cauthority['cauthority'];
+        $Admin->isUpdate(true)->save();
+
+        //超级管理员个数
+        $admincount=Admin::where('authority',1)->count();
+
+        //没有超级管理员
+        if ($admincount<=0){
+            $Admin->authority=session('authority');
+            $Admin->isUpdate(true)->save();
+            $this->assign('admin',$Admin);
+            return $this->error('至少有一个超级管理员!');
+        }else{
+            $this->assign('admin',$Admin);
+            return $this->fetch('manage');
+        }
+
+    }
+
+    //删除账号后有些级联情况无法解决
+    public function deleteAdmin(){
+        echo 'delete';
     }
 
     /**
@@ -59,13 +117,33 @@ class AdminController extends IndexController
     }
 
     /**
-     * 修改密码
+     * 修改密码,接收seesion中的信息，只能由用户自己操作
+     * @return mixed
+     * @throws \think\exception\DbException
      */
     public function changepwd(){
-        $admin=Request::instance()->param();
+        $pwd=Request::instance()->param();
+        $admin=session('adminid');
         $Admin=Admin::get($admin);
-        var_dump($admin);
-        var_dump($Admin);
+//        var_dump($pwd['oldpwd']);
+//        var_dump($Admin->password);
+//        var_dump(Admin::encryptPassword($pwd['oldpwd']));
+        if($Admin->password!=Admin::encryptPassword($pwd['oldpwd'])){
+            return $this->error('原密码错误!');
+        }else{
+            if($pwd['newpwd']==$pwd['oldpwd']){
+                return $this->error('新旧密码不能相同！');
+            }else{
+                if($pwd['newpwd']!=$pwd['againpwd']){
+                    return $this->error('二次密码错误!');
+                }
+            }
+        }
+        $Admin->password=Admin::encryptPassword($pwd['newpwd']);
+        $Admin->isUpdate(true)->save();
+        $this->assign('admin',$Admin);
+
+        return $this->success('密码修改成功',url('account'));
     }
 
     /**
@@ -96,6 +174,95 @@ class AdminController extends IndexController
         fclose($fp);
 
 //        return $this->fetch('setting');
+    }
+
+    /**
+     * 新增一个科名
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function addFamily(){
+        $family=Request::instance()->param();
+        if(!is_null(Family::get(['name'=>$family['familyname']])) ||
+            !is_null(Family::get(['name'=>$family['familyname']."科"]))){
+            return $this->error('已存在此科名');
+        }else{
+            $Family=new Family();
+            $Family->name=$family['familyname'];
+            $Family->save();
+        }
+        $this->savefamilydata();
+        $this->savegenusdata();
+        $family=Family::all();
+        $this->assign('family',$family);
+        return $this->fetch('setting');
+    }
+
+    /**
+     * 修改科的名字
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function updateFamily(){
+        $family=Request::instance()->param();
+        if(!is_null(Family::get(['name'=>$family['updatefamilyname']])) ||
+            !is_null(Family::get(['name'=>$family['updatefamilyname']."科"]))){
+            return $this->error('已存在此科名');
+        }else{
+            $Family=Family::get($family['familyid']);
+            $Family->name=$family['updatefamilyname'];
+            $Family->isUpdate(true)->save();
+        }
+        $this->savefamilydata();
+        $this->savegenusdata();
+        $family=Family::all();
+        $this->assign('family',$family);
+        return $this->fetch('setting');
+    }
+
+    /**
+     * 新增指定科名下的一个属名
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function addGenus(){
+        $genus=Request::instance()->param();
+        if(!is_null(Genus::get(['name'=>$genus['genusname']])) ||
+            !is_null(Genus::get(['name'=>$genus['genusname']."属"]))){
+            return $this->error('已存在此属名');
+        }else{
+            $Genus=new Genus();
+            $Genus->name=$genus['genusname'];
+            $Genus->familyname=$genus['familyname'];
+            $Genus->save();
+        }
+        $this->savefamilydata();
+        $this->savegenusdata();
+        $family=Family::all();
+        $this->assign('family',$family);
+        return $this->fetch('setting');
+    }
+
+    /**
+     * 修改属的名字
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function updateGenus(){
+        $genus=Request::instance()->param();
+        if(!is_null(Genus::get(['name'=>$genus['updategenusname']])) ||
+            !is_null(Genus::get(['name'=>$genus['updategenusname']."属"]))){
+            return $this->error('已存在此属名');
+        }else{
+            $Genus=Genus::get($genus['genusid']);
+            $Genus->name=$genus['updategenusname'];
+            $Genus->isUpdate(true)->save();
+        }
+        $this->savefamilydata();
+        $this->savegenusdata();
+        $family=Family::all();
+        $this->assign('family',$family);
+        return $this->fetch('setting');
     }
 
     //已被重构，可以删除

@@ -75,6 +75,11 @@ class LoginController extends Controller
         return $this->fetch();
     }
 
+    //注册页
+    public function register(){
+        return $this->fetch();
+    }
+
     //登录
     public function login(){
 
@@ -91,44 +96,39 @@ class LoginController extends Controller
                 ->update(['logintime'=>date('Y-m-d H:i:s'),'IP'=>Request::instance()->ip()]);
             Admin::saveData();
 
-            return $this->success('login success',url('Index/index'));
+            return $this->success('登陆成功',url('Index/index'));
         }else{
-            return $this->error('username or password incrrect',url('index'));
+            return $this->error('用户名或密码不正确',url('index'));
         }
-
-//        //验证密码是否正确
-//        $map=array('username' => $postData['username']);
-//        $Admin=Admin::get($map);
-//
-//        //Admin要么是一个对象，要么是null
-//        if(is_null($Admin)){
-//            //验证密码
-//            if($Admin->getData('password')!==$postData['password']){
-//                //用户名密码错误，跳转登陆界面
-//                return $this->error('password incrrect',url('index'));
-//            }else{
-//                //用户名密码正确,将amdinid存入session
-//                session('adminid',$Admin->getData('adminid'));
-//                return $this->session('login success',url('Index/index'));
-//            }
-//        }else{
-//            //用户名不存在，跳转到登陆页
-//            return $this->error('username not exit',url('index'));
-//        }
     }
 
     //注销
     public function logOut(){
         if(Admin::logOut()){
-            return $this->success('logout success',url('index'));
+            return $this->success('注销成功',url('index'));
         }else{
-            return $this->error('logout error',url('index'));
+            return $this->error('注销失败',url('index'));
         }
     }
 
     //注册页
-    public function register(){
-        return $this->fetch();
+    public function addAdmin(){
+        $register=Request::instance()->param();
+        if(!is_null(Admin::get(['username'=>$register['username']]))){
+            return $this->error('用户名已存在',url('register'));
+        }else{
+            if($register['password']!=$register['againpassword']){
+                return $this->error('密码不一致',url('register'));
+            }
+        }
+        $Admin=new Admin();
+        $Admin->authority=2;
+        $Admin->username=$register['username'];
+        $Admin->password=Admin::encryptPassword($register['password']);
+        $Admin->IP=Request::instance()->ip();
+        $Admin->save();
+
+        return $this->success('注册成功',url('index'));
     }
 
     public function test(){

@@ -76,8 +76,8 @@
                                         <th>状态</th>
                                         <th style="width: 20%">提交时间</th>
                                         <th style="width: 20%">解决时间</th>
-                                        <th>管理员</th>
-                                        <th>动作</th>
+                                        <th>处理者</th>
+                                        <th style="width: 10%">动作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -160,18 +160,17 @@
                 { "data": "stime" },
                 { "data": "ftime" },
                 { "data": "adminname" },
-                { "data": function (data) {
-                        return "<div class='btn-group dropdown'>"+
-                            "<a href='javascript: void(0);' class='dropdown-toggle arrow-none btn btn-light btn-sm' data-toggle='dropdown' aria-expanded='false'>"+
-                            "<i class='mdi mdi-dots-horizontal'></i></a>"+
-                            "<div class='dropdown-menu dropdown-menu-right'>"+
-                            "<a class='dropdown-item' href=''#'>"+
-                            "<i class='mdi mdi-pencil mr-1 text-muted'></i>编辑</a>"+
-                            "<a class='dropdown-item' href='#'>"+
-                            "<i class='mdi mdi-delete mr-1 text-muted'></i>删除</a>"+
-                            "</div></div>"
-                    }},
-            ]
+                { "data": null},
+            ],
+            columnDefs: [{
+                //   指定第最后一列
+                targets: -1,
+                render: function (data,type,row,meta) {
+                    return '<a class="dropdown-item" href="manage?bugid=' + row.bugid + '">'+
+                        '<i class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>'
+
+                }
+            }]
         });
     });
 </script>

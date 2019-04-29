@@ -30,13 +30,13 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-<!--    <include src="sidemenu.html"></include>-->
+    <!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-<!--            <include src="header.html"></include>-->
+            <!--            <include src="header.html"></include>-->
 
             <div class="container-fluid">
 
@@ -73,12 +73,12 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <button type="submit" class="btn btn-primary ml-2 mt-3"
+                                                        <button type="submit" class="btn btn-primary ml-5 mt-3"
                                                                 data-toggle="modal"
                                                                 data-target="#familymodal">添加
                                                         </button>
-                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除
-                                                        </button>
+                                                        <!--                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除-->
+                                                        <!--                                                        </button>-->
                                                     </div>
                                                 </div>
                                                 <table id="family-datatable" class="table display dt-responsive">
@@ -86,6 +86,7 @@
                                                     <tr>
                                                         <th>编号</th>
                                                         <th>科名</th>
+                                                        <th>操作</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,12 +109,12 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <button type="submit" class="btn btn-primary ml-2 mt-3"
+                                                        <button type="submit" class="btn btn-primary ml-5 mt-3"
                                                                 data-toggle="modal"
                                                                 data-target="#genusmodal">添加
                                                         </button>
-                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除
-                                                        </button>
+                                                        <!--                                                        <button type="submit" class="btn btn-danger ml-4 mt-3">删除-->
+                                                        <!--                                                        </button>-->
                                                     </div>
                                                 </div>
                                                 <table id="genus-datatable" class="table display dt-responsive">
@@ -122,6 +123,7 @@
                                                         <th>编号</th>
                                                         <th>科名</th>
                                                         <th>属名</th>
+                                                        <th>操作</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -143,23 +145,23 @@
     </div>
 
     {include file="Public/footer"/}
-<!--    <include src="footer.html"></include>-->
+    <!--    <include src="footer.html"></include>-->
 
 </div>
 
-<div class="modal fade" id="familymodal" tabindex="-1" role="dialog" aria-labelledby="keModalLabel"
+<div class="modal fade" id="familymodal" tabindex="-1" role="dialog" aria-labelledby="familyModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="keModalLabel">新建 科名</h4>
+                <h4 class="modal-title" id="familyModalLabel">新建 科名</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form role="form">
+                <form role="form" action="addFamily" method="post">
                     <div class="form-group row">
-                        <label for="kename" class="col-sm-2">科 名:</label>
-                        <input type="text" class="my-form col-sm-10" id="kename">
+                        <label for="familyname" class="col-sm-2">科 名:</label>
+                        <input type="text" class="my-form col-sm-10" name="familyname" id="familyname">
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
@@ -171,27 +173,27 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="genusmodal" tabindex="-1" role="dialog" aria-labelledby="shuModalLabel"
+<div class="modal fade" id="genusmodal" tabindex="-1" role="dialog" aria-labelledby="genusModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="shuModalLabel">新建 属名</h4>
+                <h4 class="modal-title" id="genusModalLabel">新建 属名</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form role="form">
+                <form role="form" action="addGenus" method="post">
                     <div class="form-group row">
                         <label class="col-sm-2">科 名:</label>
-                        <select class="custom-select col-sm-10">
+                        <select class="custom-select col-sm-10" name="familyname">
                             {volist name="family" id="data"}
-                            <option value="{$data.familyid}">{$data.name}</option>
+                            <option value="{$data.name}">{$data.name}</option>
                             {/volist}
                         </select>
                     </div>
                     <div class="form-group row">
-                        <label for="shuname" class="col-sm-2">属 名:</label>
-                        <input type="text" class="my-form col-sm-10" id="shuname">
+                        <label for="genusname" class="col-sm-2">属 名:</label>
+                        <input type="text" class="my-form col-sm-10" name="genusname" id="genusname">
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
@@ -203,6 +205,55 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade" id="updatefamilymodal" tabindex="-1" role="dialog" aria-labelledby="updateFamilyModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="updateFamilyModalLabel">修改 科名</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form" action="updateFamily" method="post">
+                    <div class="form-group row">
+                        <input type="hidden" name="familyid" id="familyid" value="">
+                        <label for="updatefamilyname" class="col-sm-2">科 名:</label>
+                        <input type="text" class="my-form col-sm-10" name="updatefamilyname" id="updatefamilyname">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="updategenusmodal" tabindex="-1" role="dialog" aria-labelledby="updateGenusModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="updateGenusModalLabel">修改 属名</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form" action="updateGenus" method="post">
+                    <div class="form-group row">
+                        <input type="hidden" name="genusid" id="genusid" value="">
+                        <label for="updategenusname" class="col-sm-2">属 名:</label>
+                        <input type="text" class="my-form col-sm-10" name="updategenusname" id="updategenusname">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">保存</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 
@@ -219,66 +270,113 @@
 <script src="__PUBLIC__/admin/js/datatables.keytable.min.js"></script>
 <script src="__PUBLIC__/admin/js/datatables.select.min.js"></script>
 <script>$(document).ready(function () {
+
     $("#family-datatable").DataTable({
         dom: '<"top"f>rt<"bottom"p><"clear">',
         info: false,
-        select: {style: "single"},
-        "oLanguage" : { // 国际化配置
-            "sProcessing" : "正在获取数据，请稍后...",
-            "sLengthMenu" : "显示 _MENU_ 条",
-            "sZeroRecords" : "没有找到数据",
-            "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
-            "sInfoEmpty" : "记录数为0",
-            "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
-            "sInfoPostFix" : "",
-            "sSearch" : "查询",
-            "sUrl" : "",
-            "oPaginate" : {
-                "sFirst" : "第一页",
-                "sPrevious" : "上一页",
-                "sNext" : "下一页",
-                "sLast" : "最后一页"
+        "oLanguage": { // 国际化配置
+            "sProcessing": "正在获取数据，请稍后...",
+            "sLengthMenu": "显示 _MENU_ 条",
+            "sZeroRecords": "没有找到数据",
+            "sInfo": "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+            "sInfoEmpty": "记录数为0",
+            "sInfoFiltered": "(全部记录数 _MAX_ 条)",
+            "sInfoPostFix": "",
+            "sSearch": "查询",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "第一页",
+                "sPrevious": "上一页",
+                "sNext": "下一页",
+                "sLast": "最后一页"
             }
         },
-        ajax:{
-            url:"/ThinkPHP/public/static/data/familyinfo.txt",
-            dataSrc:"",
+        ajax: {
+            url: "/ThinkPHP/public/static/data/familyinfo.txt",
+            dataSrc: "",
         },
         "columns": [
-            { "data": "familyid"},
-            { "data": "name" },
-        ]
+            {"data": "familyid"},
+            {"data": "name"},
+            {"data": null},
+        ],
+        columnDefs: [{
+            //   指定第最后一列
+            targets: -1,
+            render: function (data, type, row, meta) {
+                return '<div class="btn-group dropdown">' +
+                    '<a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">' +
+                    '<i class="mdi mdi-dots-horizontal"></i></a>' +
+                    '<div class="dropdown-menu dropdown-menu-right">' +
+                    '<a class="dropdown-item" data-toggle="modal" data-target="#updatefamilymodal" id="updatefamily">' +
+                    '<i class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>' +
+                    '<a class="dropdown-item" data-toggle="modal" data-target="#updatefamilymodal" id="update">' +
+                    '<i class="mdi mdi-delete mr-1 text-muted"></i>删除</a>' +
+                    '</div></div>'
+            }
+        }]
     }),
+        //将编辑的科id传给模态框
+        $("#family-datatable tbody").on('click','#updatefamily',function () {
+            var table = $('#family-datatable').DataTable();
+            var data=table.row($(this).parents('tr')).data();
+            $("#familyid").val(data.familyid);
+            console.log(data);
+        });
+
         $('#genus-datatable').DataTable({
             dom: '<"top"f>rt<"bottom"p><"clear">',
             info: false,
-            select: {style: "single"},
-            "oLanguage" : { // 国际化配置
-                "sProcessing" : "正在获取数据，请稍后...",
-                "sLengthMenu" : "显示 _MENU_ 条",
-                "sZeroRecords" : "没有找到数据",
-                "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
-                "sInfoEmpty" : "记录数为0",
-                "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
-                "sInfoPostFix" : "",
-                "sSearch" : "查询",
-                "sUrl" : "",
-                "oPaginate" : {
-                    "sFirst" : "第一页",
-                    "sPrevious" : "上一页",
-                    "sNext" : "下一页",
-                    "sLast" : "最后一页"
+            "oLanguage": { // 国际化配置
+                "sProcessing": "正在获取数据，请稍后...",
+                "sLengthMenu": "显示 _MENU_ 条",
+                "sZeroRecords": "没有找到数据",
+                "sInfo": "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+                "sInfoEmpty": "记录数为0",
+                "sInfoFiltered": "(全部记录数 _MAX_ 条)",
+                "sInfoPostFix": "",
+                "sSearch": "查询",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "最后一页"
                 }
             },
-            ajax:{
-                url:"/ThinkPHP/public/static/data/genusinfo.txt",
-                dataSrc:"",
+            ajax: {
+                url: "/ThinkPHP/public/static/data/genusinfo.txt",
+                dataSrc: "",
             },
             "columns": [
-                { "data": "genusid"},
-                { "data": "familyname" },
-                { "data": "name"},
-            ]
+                {"data": "genusid"},
+                {"data": "familyname"},
+                {"data": "name"},
+                {"data": null},
+            ],
+            columnDefs: [{
+                //   指定第最后一列
+                targets: -1,
+                render: function (data, type, row, meta) {
+                    return '<div class="btn-group dropdown">' +
+                        '<a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false">' +
+                        '<i class="mdi mdi-dots-horizontal"></i></a>' +
+                        '<div class="dropdown-menu dropdown-menu-right">' +
+                        '<a class="dropdown-item" data-toggle="modal" data-target="#updategenusmodal" id="updategenus">' +
+                        '<i class="mdi mdi-pencil mr-1 text-muted"></i>编辑</a>' +
+                        '<a class="dropdown-item" href="#">' +
+                        '<i class="mdi mdi-delete mr-1 text-muted"></i>删除</a>' +
+                        '</div></div>'
+                }
+            }]
+        });
+
+        //将编辑的属id传给模态框
+        $("#genus-datatable tbody").on('click','#updategenus',function () {
+            var table = $('#genus-datatable').DataTable();
+            var data = table.row($(this).parents('tr')).data();
+            $("#genusid").val(data.genusid);
+            console.log(data);
         });
 });</script>
 

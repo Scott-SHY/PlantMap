@@ -3,6 +3,8 @@
 
 namespace app\admin\controller;
 use app\admin\model\Bug;
+use think\Request;
+
 /**
  * Class BugController
  * @package app\admin\controller
@@ -17,10 +19,42 @@ class BugController extends IndexController
         return $this->fetch();
     }
 
+    /**
+     * Bug信息查看并修改
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function manage(){
+        $map=Request::instance()->param('bugid');
+        $Bug=Bug::get($map);
+
+        if(!is_null($Bug)){
+            $this->assign('bug',$Bug);
+        }
         return $this->fetch();
     }
 
+    /**
+     * 修改Bug状态并保存
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function saveBug(){
+        $map=Request::instance()->param();
+        $Bug=Bug::get(['bugid'=>$map['bugid']]);
+
+        //判断Bug状态，已经解决的无法修改
+        if($Bug->state=="已解决" && $map['state']=="未解决"){
+            return $this->error('此问题已解决，无法修改');
+        }else{
+            $Bug->state=$map['state'];
+            $Bug->ftime=date('Y-m-d H:i:s');
+            $Bug->adminid=session('adminid');
+            $Bug->isUpdate(true)->save();
+            $this->assign('bug',$Bug);
+            return $this->fetch('manage');
+        }
+    }
 
     //已重构，可以删除
     public function savedata(){

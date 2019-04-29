@@ -27,13 +27,13 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-<!--    <include src="sidemenu.html"></include>-->
+    <!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-<!--            <include src="header.html"></include>-->
+            <!--            <include src="header.html"></include>-->
 
             <div class="container-fluid">
 
@@ -56,7 +56,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form>
+                                <form action="saveBug" method="post">
                                     <div class="row mb-3">
                                         <h3 class="col-sm-2 text-center">反馈信息</h3>
                                     </div>
@@ -64,37 +64,47 @@
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label class="col-sm-2">主 题:</label>
-                                                <input type="text" class="my-form col-sm-8" readonly="">
+                                                <input type="text" class="my-form col-sm-8"
+                                                       placeholder="{$bug->getData('title')}" readonly="">
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2">类 型:</label>
-                                                <input type="text" class="my-form col-sm-8" readonly="">
+                                                <input type="text" class="my-form col-sm-8"
+                                                       placeholder="{$bug->getData('type')}" readonly="">
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2">IP:</label>
-                                                <input type="text" class="my-form col-sm-8" readonly="">
+                                                <label class="col-sm-2">提交 IP:</label>
+                                                <input type="text" class="my-form col-sm-8"
+                                                       placeholder="{$bug->getData('IP')}" readonly="">
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2">时 间:</label>
-                                                <input type="text" class="my-form col-sm-8" readonly="">
+                                                <label class="col-sm-2">提交时间:</label>
+                                                <input type="text" class="my-form col-sm-8"
+                                                       placeholder="{$bug->getData('stime')}" readonly="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2">解决时间:</label>
+                                                <input type="text" class="my-form col-sm-8"
+                                                       placeholder="{$bug->getData('ftime')}" readonly="">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 text-center">内 容:</label>
                                                 <div class="col-sm-9">
-                                                    <textarea class="my-form" rows="5" readonly></textarea>
+                                                    <textarea class="my-form" rows="5" readonly>{$bug->getData('content')}</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="col-sm-3">编 号:</label>
-                                                <input type="text" class="my-form col-sm-8" readonly="">
+                                                <input type="text" class="my-form col-sm-8" name="bugid"
+                                                       value="{$bug->getData('bugid')}" readonly="">
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3">状 态:</label>
-                                                <select class="custom-select col-sm-8">
-                                                    <option selected>待解决</option>
-                                                    <option value="1">已解决</option>
+                                                <select class="custom-select col-sm-8" name="state">
+                                                    <option selected>{$state=$bug->getData('state')}</option>
+                                                    <option>{$state=='已解决'?'未解决':'已解决'}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -116,7 +126,7 @@
 
     <!-- Footer Start -->
     {include file="Public/footer"/}
-<!--    <include src="footer.html"></include>-->
+    <!--    <include src="footer.html"></include>-->
 
 </div>
 
