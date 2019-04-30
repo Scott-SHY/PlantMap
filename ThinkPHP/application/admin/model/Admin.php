@@ -30,6 +30,7 @@ class Admin extends Model
                 session('adminid',$Admin->getData('adminid'));
                 session('username',$Admin->getData('username'));
                 session('authority',$Admin->getData('authority'));
+                session('headpic',$Admin->getData('headpic'));
                 return true;
             }
         }

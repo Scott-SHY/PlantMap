@@ -279,6 +279,41 @@ class AdminController extends IndexController
         return $this->fetch('index');
     }
 
+    /**
+     * 修改头像
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function changeheadpic(){
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('headimage');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($file){
+            $info = $file->validate(['ext'=>'jpg,png,jpeg'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'head');
+            if($info){
+                // 成功上传后 获取上传信息
+            }else{
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+        }else{
+            var_dump($file);
+        }
+        $Admin=Admin::get(session('adminid'));
+        if($Admin->headpic!='default.jpg'){
+            $oldpic=$Admin->headpic;
+            $Admin->headpic='default.jpg';
+            unlink('../public/static/uploads/head/'.$oldpic);
+        }
+        $Admin->headpic=$info->getSaveName();
+        session('headpic',$Admin->headpic);
+        $Admin->isUpdate(true)->save();
+        $this->assign('admin',$Admin);
+        return $this->fetch('account');
+    }
+
     public function test2(){
         echo time();
         echo date('Y-m-d H:i:s');

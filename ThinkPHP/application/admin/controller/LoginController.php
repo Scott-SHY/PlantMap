@@ -13,8 +13,10 @@ use think\Controller;
 class LoginController extends Controller
 {
 
-    //用户登录表单
-    //登录页
+    /**
+     * 用户登录页
+     * @return mixed
+     */
     public function index(){
         //验证用户是否登陆
 //        $adminid=session('adminid');
@@ -75,15 +77,19 @@ class LoginController extends Controller
         return $this->fetch();
     }
 
-    //注册页
+    /**
+     * 注册页
+     * @return mixed
+     */
     public function register(){
         return $this->fetch();
     }
 
-    //登录
+    /**
+     * 登陆验证
+     * @return mixed
+     */
     public function login(){
-
-        //登陆后需要刷新admininfo文件，并重新绘制表格(已完成)
 
         //接收post信息
         $postData=Request::instance()->post();
@@ -102,7 +108,10 @@ class LoginController extends Controller
         }
     }
 
-    //注销
+    /**
+     * 注销
+     * @return mixed
+     */
     public function logOut(){
         if(Admin::logOut()){
             return $this->success('注销成功',url('index'));
@@ -111,7 +120,11 @@ class LoginController extends Controller
         }
     }
 
-    //注册页
+    /**
+     * 用户注册
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function addAdmin(){
         $register=Request::instance()->param();
         if(!is_null(Admin::get(['username'=>$register['username']]))){
@@ -126,6 +139,7 @@ class LoginController extends Controller
         $Admin->username=$register['username'];
         $Admin->password=Admin::encryptPassword($register['password']);
         $Admin->IP=Request::instance()->ip();
+        $Admin->headpic='default.jpg';
         $Admin->save();
 
         return $this->success('注册成功',url('index'));

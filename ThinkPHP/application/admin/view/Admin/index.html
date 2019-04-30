@@ -27,13 +27,11 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-<!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-<!--            <include src="header.html"></include>-->
 
             <div class="container-fluid">
 
@@ -86,7 +84,6 @@
 
         <!-- Footer Start -->
         {include file="Public/footer"/}
-<!--        <include src="footer.html"></include>-->
 
     </div>
 
@@ -141,7 +138,11 @@
             },
             "columns": [
                 { "data": "adminid"},
-                { "data": "headpic" },
+                { "data": null,
+                    render:function (data,type,row,meta) {
+                        return '<img src="__PUBLIC__/uploads/head/' + row.headpic + '" alt="user-image" class="rounded-circle" style="width: 25%;">'
+                    }
+                },
                 { "data": "username" },
                 { "data": "authority" },
                 { "data": "IP" },
@@ -149,7 +150,6 @@
                 { "data": null},
             ],
             columnDefs: [{
-                //   指定第最后一列
                 targets: -1,
                 render: function (data,type,row,meta) {
                     return '<div class="btn-group dropdown">'+
@@ -162,7 +162,7 @@
                         '<i class="mdi mdi-delete mr-1 text-muted"></i>删除</a>'+
                         '</div></div>'
                 }
-            }]
+            }],
         });
     });
 </script>

@@ -28,13 +28,11 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-<!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-<!--            <include src="header.html"></include>-->
 
             <!-- Start Content-->
             <div class="container-fluid">
@@ -97,7 +95,6 @@
 
         <!-- Footer Start -->
         {include file="Public/footer"/}
-<!--        <include src="footer.html"></include>-->
 
     </div>
 
@@ -129,9 +126,6 @@
     $(document).ready(function () {
         $('#bug-datatable').DataTable({
             "order":[2,"desc"],
-            // ajax:'/ThinkPHP/public/test.txt',
-            // "processing": true,
-            // // "serverSide":true,
             "oLanguage" : { // 国际化配置
                 "sProcessing" : "正在获取数据，请稍后...",
                 "sLengthMenu" : "显示 _MENU_ 条",

@@ -11,6 +11,10 @@ use think\Request;
  */
 class IndexController extends Controller
 {
+    /**
+     * 父类构造函数
+     * Index constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -31,6 +35,9 @@ class IndexController extends Controller
         return $this->fetch('index');
     }
 
+    /**初始化Website信息
+     * @return mixed
+     */
     public function index(){
         //重构，用Model的静态方法
         $webdata=Website::Webinit();

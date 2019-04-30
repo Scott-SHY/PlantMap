@@ -26,13 +26,11 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-<!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-<!--            <include src="header.html"></include>-->
 
             <div class="container-fluid">
 
@@ -55,18 +53,27 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                                <div id="chart1" style="width: 100%;height: 400px"></div>
+                                <div id="mapnum" style="width: 100%;height: 400px"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                               <div id="chart2" style="width: 100%;height: 400px"></div>
+                                <div id="bugnum" style="width: 100%;height: 400px"></div>
                             </div>
                         </div>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="familynum" style="width: 100%;height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -75,7 +82,6 @@
         </div>
 
         {include file="Public/footer"/}
-<!--        <include src="footer.html"></include>-->
 
     </div>
 
@@ -86,13 +92,203 @@
 <script src="__PUBLIC__/admin/js/app.min.js"></script>
 
 <!-- Plugins js -->
-<!--<script src="js/chart.bundle.js"></script>-->
-<!--<script src="js/jquery.sparkline.min.js"></script>-->
-<!--&lt;!&ndash; demo &ndash;&gt;-->
-<!--<script src="js/chartjs.init.js"></script>-->
-<!--<script src="js/sparkline.init.js"></script>-->
-<script src="__PUBLIC__/admin/js/chart-data.js"></script>
+<!--<script src="__PUBLIC__/admin/js/chart-data.js"></script>-->
+<script>
 
+    /**
+     * 区域植物数量
+     * @type {Array}
+     */
+    var map=[],mapnumber=[];
+    function Mapnum(){
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('admin/Chart/mapnum')}",
+            data:{},
+            dataType:"json",
+            success:function(result){
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        map.push(result[i].mapname);
+                        mapnumber.push(result[i].number);
+                    }
+                }
+            }
+        })
+        return map,mapnumber;
+    }
+    Mapnum();
+
+    // 初始化图表标签
+    var myChart1 = echarts.init(document.getElementById('mapnum'));
+    var options1={
+        title:{
+            text: '植物数量',
+            x:'left',
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        tooltip:{},
+        xAxis: {
+            type: 'category',
+            data: map,
+            axisLabel:{
+                rotate:-30
+            }
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: mapnumber,
+            type: 'bar'
+        }]
+    };
+    myChart1.clear();
+    myChart1.setOption(options1);
+
+    /**
+     * 科对应植物数量饼状图
+     * @type {Array}
+     */
+    var family=[],familynumber=[];
+    function Familynum(){
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('admin/Chart/familynum')}",
+            data:{},
+            dataType:"json",
+            success:function(result){
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        family.push(result[i].familyname);
+                        familynumber.push({
+                            value:result[i].number,
+                            name:result[i].familyname,
+                        });
+                    }
+                }
+            }
+        })
+        return family,familynumber;
+    }
+    Familynum();
+
+    var myChart2 = echarts.init(document.getElementById('familynum'));
+    var options2={
+        //定义一个标题
+        title:{
+            text: '科-属数量',
+            x:'center',
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend:{
+            orient: 'vertical',
+            left: 'left',
+            data: family,
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        //name=legend.data的时候才能显示图例
+        series:[{
+            name: '属数量',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data: familynumber,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }]
+    };
+    myChart2.clear();
+    myChart2.setOption(options2);
+
+    var bugstate=[],statenum=[];
+    function Bugnum(){
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('admin/Chart/bugnum')}",
+            data:{},
+            dataType:"json",
+            success:function(result){
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        bugstate.push(result[i].state);
+                        statenum.push({
+                            value:result[i].number,
+                            name:result[i].state,
+                        });
+                    }
+                }
+            }
+        })
+        return bugstate,statenum;
+    }
+    Bugnum();
+
+    var myChart3 = echarts.init(document.getElementById('bugnum'));
+    var options3={
+//定义一个标题
+        title:{
+            text: '反馈状态',
+            x:'center',
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend:{
+            orient: 'vertical',
+            left: 'left',
+            data: bugstate,
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        color:['#2b821d', '#e6b600'],
+        //name=legend.data的时候才能显示图例
+        series:[{
+            name: '反馈状态',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data: statenum,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }]
+    };
+    myChart3.clear();
+    myChart3.setOption(options3);
+
+    window.onresize=function() {
+        myChart1.resize();
+        myChart2.resize();
+    }
+</script>
 
 </body>
 </html>

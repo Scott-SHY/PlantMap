@@ -25,13 +25,11 @@
 <div id="wrapper">
 
     {include file="Public/sidemenu"/}
-    <!--    <include src="sidemenu.html"></include>-->
 
     <div class="content-page">
         <div class="content">
 
             {include file="Public/header"/}
-            <!--            <include src="header.html"></include>-->
 
             <div class="container-fluid">
 
@@ -40,11 +38,11 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="#">后台</a></li>
-                                    <li class="breadcrumb-item active">账户</li>
+                                    <li class="breadcrumb-item"><a href="{:url('admin/Index/index')}">后台</a></li>
+                                    <li class="breadcrumb-item active">用户管理</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">账户</h4>
+                            <h4 class="page-title">用户管理</h4>
                         </div>
                     </div>
                 </div>
@@ -145,9 +143,9 @@
                     </div>
                 </form>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div><!-- /.model-content -->
+    </div><!-- /.model-dialog -->
+</div><!-- /.model -->
 
 <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
      aria-hidden="true">
@@ -168,9 +166,9 @@
                     </div>
                 </form>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div><!-- /.model-content -->
+    </div><!-- /.model-dialog -->
+</div><!-- /.model -->
 
 
 <!-- App js -->
@@ -178,11 +176,8 @@
 <script src="__PUBLIC__/admin/js/app.min.js"></script>
 
 <!-- Plugins js -->
-<!--<script src="js/chart.bundle.js"></script>-->
-<!--<script src="js/jquery.sparkline.min.js"></script>-->
 <script src="__PUBLIC__/admin/js/jquery.knob.min.js"></script>
 <script src="__PUBLIC__/admin/js/jquery.min.js"></script>
-<!--<script src="js/dashboard.init.js"></script>-->
 
 
 </body>
