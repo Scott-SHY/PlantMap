@@ -46,7 +46,10 @@ class BugController extends IndexController
         //判断Bug状态，已经解决的无法修改
         if($Bug->state=="已解决" && $map['state']=="未解决"){
             return $this->error('此问题已解决，无法修改');
-        }else{
+        }else if($Bug->state=="已解决"){
+            $this->assign('bug',$Bug);
+            return $this->fetch('manage');
+        } else{
             $Bug->state=$map['state'];
             $Bug->ftime=date('Y-m-d H:i:s');
             $Bug->adminid=session('adminid');

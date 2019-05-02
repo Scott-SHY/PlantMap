@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>校园植物地图</title>
+
+    <link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
+    <!-- Bootstrap -->
+<!--    <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.css">-->
+    <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/index/css/style.css">
+
+    <!-- Font Awesome -->
+    <link href="__PUBLIC__/index/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <script src="__PUBLIC__/index/js/include.js"></script>
+
+
+</head>
+<body>
+{include file="Public/header"/}
+<!--<include src="header.html"></include>-->
+
+{include file="Public/searchbar"/}
+<!--<include src="searchbar.html"></include>-->
+<!--<section class="page-title">-->
+<!--    &lt;!&ndash; Container Start &ndash;&gt;-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-8 offset-md-2 text-center">-->
+<!--                &lt;!&ndash; Title text &ndash;&gt;-->
+<!--                <h3>About</h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Container End &ndash;&gt;-->
+<!--</section>-->
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-img">
+                    <img src="__PUBLIC__/index/images/contact-us.png" class="img-fluid w-100 rounded" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pt-lg-0">
+                <div class="about-content">
+                    <h3 class="font-weight-bold">关于此网站</h3>
+                    <p>校园植物电子地图，为作者的毕业设计作品，收录南京农业大学卫岗校区所分布的植物，
+                        并提供检索查询植物信息等功能，网站逐步完善中。</p>
+                    <h3 class="font-weight-bold" style="margin-top: 7rem">联系作者</h3>
+                    <p>Email：570090885@qq.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+                <div class="counter-content text-center bg-light py-4 rounded">
+                    <i class="fa fa-pagelines d-block"></i>
+                    <span class="counter my-2 d-block" data-count="{$website['plantnum']}">0</span>
+                    <h5>植物数量</h5>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+                <div class="counter-content text-center bg-light py-4 rounded">
+                    <i class="fa fa-envira d-block"></i>
+                    <span class="counter my-2 d-block" data-count="{$website['familynum']}">0</span>
+                    <h5>科 数量</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+                <div class="counter-content text-center bg-light py-4 rounded">
+                    <i class="fa fa-leaf d-block"></i>
+                    <span class="counter my-2 d-block" data-count="{$website['genusnum']}">0</span>
+                    <h5>属 数量</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+                <div class="counter-content text-center bg-light py-4 rounded">
+                    <i class="fa fa-user-circle d-block"></i>
+                    <span class="counter my-2 d-block" data-count="200">0</span>
+                    <h5>访问人数</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{include file="Public/footer"/}
+<!--<include src="footer.html"></include>-->
+
+<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js"></script>
+<script src="__PUBLIC__/index/js/jquery.min.js"></script>
+<!--<script src="__PUBLIC__/index/js/bootstrap.js"></script>-->
+<script src="__PUBLIC__/index/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/index/js/common.js"></script>
+
+</body>
+</html>

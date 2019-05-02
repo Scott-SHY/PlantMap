@@ -17,4 +17,4 @@ define('SITE_URL','http://localhost/ThinkPHP');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
 ////自动生成admin模块
-//think\Build::module('admin');
+//think\Build::module('home');

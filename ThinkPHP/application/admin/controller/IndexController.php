@@ -6,14 +6,14 @@ use app\admin\model\Admin;
 use think\Request;
 
 /**
- * Class Index
+ * Class IndexController
  * @package app\admin\controller
  */
 class IndexController extends Controller
 {
     /**
      * 父类构造函数
-     * Index constructor.
+     * IndexController constructor.
      */
     public function __construct()
     {

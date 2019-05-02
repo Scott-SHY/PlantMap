@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>校园植物地图</title>
+
+    <link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.css">
+    <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/index/css/style.css">
+
+    <!-- Font Awesome -->
+    <link href="__PUBLIC__/index/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <script src="__PUBLIC__/index/js/include.js"></script>
+
+
+</head>
+<body>
+{include file="Public/header"/}
+<!--<include src="header.html"></include>-->
+
+{include file="Public/searchbar"/}
+<!--<include src="searchbar.html"></include>-->
+<!--<section class="page-title">-->
+<!--    &lt;!&ndash; Container Start &ndash;&gt;-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-8 offset-md-2 text-center">-->
+<!--                &lt;!&ndash; Title text &ndash;&gt;-->
+<!--                <h3>Contact Us</h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Container End &ndash;&gt;-->
+<!--</section>-->
+
+<!-- contact us start-->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-us-content p-4">
+                    <h5>提交反馈</h5>
+                    <h1 class="pt-3">遇到任何问题？</h1>
+                    <p class="pt-3 pb-5">向我们提交使用过程中遇到的问题，请包含简洁的标题与详细的内容</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form action="submitbug" method="post" enctype="multipart/form-data">
+                    <fieldset class="p-4">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-12 pt-2">
+                                    <input type="text" name="title" id="title" placeholder="标题*" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-6 py-2">
+                                    <select name="type" id="type" class="form-control w-100" required>
+                                        <option value="0">请选择问题类型</option>
+                                        <option value="信息问题">信息问题</option>
+                                        <option value="图片问题">图片问题</option>
+                                        <option value="分布问题">分布问题</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="file" name="pic" id="pic" placeholder="图片" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        <select name=""  class="form-control w-100">-->
+                        <!--                            <option value="1">问题种类</option>-->
+                        <!--                            <option value="1">植物介绍问题</option>-->
+                        <!--                            <option value="1">图片问题</option>-->
+                        <!--                            <option value="1">模型问题</option>-->
+                        <!--                            <option value="1">其他</option>-->
+                        <!--                        </select>-->
+                        <textarea name="content" id="content" placeholder="内容*" class="border w-100 p-3 mt-3 mt-lg-4"></textarea>
+                        <div class="btn-grounp">
+                            <button type="submit" class="btn btn-primary mt-2 float-right">提交</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- contact us end -->
+
+{include file="Public/footer"/}
+<!--<include src="footer.html"></include>-->
+
+<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js"></script>
+<script src="__PUBLIC__/index/js/jquery.min.js"></script>
+<script src="__PUBLIC__/index/js/bootstrap.js"></script>
+<script src="__PUBLIC__/index/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/index/js/common.js"></script>
+
+</body>
+</html>
