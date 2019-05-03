@@ -1,8 +1,8 @@
 <?php
 namespace app\index\controller;
-use app\admin\model\Family;
-use app\admin\model\Genus;
-use app\admin\model\Website;
+use app\index\model\Family;
+use app\index\model\Genus;
+use app\index\model\Website;
 use think\Controller;
 
 class IndexController extends Controller
