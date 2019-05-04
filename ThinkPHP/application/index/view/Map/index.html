@@ -8,56 +8,49 @@
 
     <link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
     <!-- Bootstrap -->
-<!--    <link rel="stylesheet" href="css/bootstrap.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap.css">-->
     <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.min.css">
-    <!--	<link rel="stylesheet" href="css/bootstrap-theme.css">-->
-    <!--	<link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="__PUBLIC__/index/css/style.css">
 
     <!-- Font Awesome -->
     <link href="__PUBLIC__/index/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!--	<link href="css/slick-carousel/slick/slick.css" rel="stylesheet">-->
-    <!--	<link href="css/slick-carousel/slick/slick-theme.css" rel="stylesheet">-->
-    <!--    <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">-->
-    <!--    <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">-->
-    <!--	<link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">-->
-    <!--	<link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">-->
     <script src="__PUBLIC__/index/js/include.js"></script>
 
 </head>
 <body>
 {include file="Public/header"/}
-<!--<include src="header.html"></include>-->
 
 {include file="Public/searchbar"/}
-<!--<include src="searchbar.html"></include>-->
 
 <section class="section">
     <div class="container">
         <h3 class="text-center">校园植物地图</h3>
         <div class="row">
-            <img style="height: 100%;width: 100%" src="__PUBLIC__/index/images/plantmap.jpg" usemap="#plantmap" id="Map">
+            <img style="height: 100%;width: 100%" src="__PUBLIC__/index/images/plantmap.jpg" usemap="#plantmap"
+                 id="Map">
             <!--            height:1140px  width:808px-->
             <map name="plantmap" id="mymap">
                 <area shape="poly"
                       coords="332,16,221,441,265,456,284,392,320,401,306,455,392,476,435,322,460,328,500,173,415,145,437,62,427,41"
-                      alt="牌坊" href="#">
+                      alt="牌坊" href="{:url('index/Plant/search?mapname='.'牌坊'.'&state='.'onlyarea')}">
                 <area shape="poly"
                       coords="702,6,662,139,597,123,594,116,531,98,526,91,528,83,511,78,487,165,503,170,488,222,560,245,598,280,719,315,729,302,727,283,715,276,778,42"
-                      alt="北苑" href="#">
+                      alt="北苑" href="{:url('index/Plant/search?mapname='.'北苑'.'&state='.'onlyarea')}">
                 <area shape="poly" coords="488,229,462,327,832,431,831,386,730,303,721,321,593,286,560,251" alt="教学楼"
-                      href="#">
-                <area shape="poly" coords="513,351,494,423,714,481,734,413" alt="图书馆" href="#">
+                      href="{:url('index/Plant/search?mapname='.'教学楼'.'&state='.'onlyarea')}">
+                <area shape="poly" coords="513,351,494,423,714,481,734,413" alt="图书馆"
+                      href="{:url('index/Plant/search?mapname='.'图书馆'.'&state='.'onlyarea')}">
                 <area shape="poly"
                       coords="433,329,392,478,306,457,282,553,305,559,299,577,368,592,382,551,420,561,451,537,500,350"
-                      alt="理科楼" href="#">
+                      alt="理科楼" href="{:url('index/Plant/search?mapname='.'理科楼'.'&state='.'onlyarea')}">
                 <area shape="poly"
                       coords="493,427,464,541,481,580,476,603,515,615,473,769,591,765,594,656,636,656,642,544,660,473"
-                      alt="行政楼" href="#">
+                      alt="行政楼" href="{:url('index/Plant/search?mapname='.'行政楼'.'&state='.'onlyarea')}">
                 <area shape="poly"
                       coords="456,551,432,565,382,552,369,593,300,579,266,692,165,674,132,778,154,793,361,770,377,735,430,756,431,770,471,770,512,621,466,603,470,575"
-                      alt="逸夫楼" href="#">
-                <area shape="poly" coords="663,473,644,544,638,658,835,663,832,439,740,416,719,488" alt="南苑" href="#">
+                      alt="逸夫楼" href="{:url('index/Plant/search?mapname='.'逸夫楼'.'&state='.'onlyarea')}">
+                <area shape="poly" coords="663,473,644,544,638,658,835,663,832,439,740,416,719,488" alt="南苑"
+                      href="{:url('index/Plant/search?mapname='.'南苑'.'&state='.'onlyarea')}">
             </map>
         </div>
     </div>
@@ -121,12 +114,10 @@
 </script>
 
 {include file="Public/footer"/}
-<!--<include src="footer.html"></include>-->
 
 
 <script src="__PUBLIC__/index/js/jquery-3.2.1.min.js"></script>
 <script src="__PUBLIC__/index/js/jquery.min.js"></script>
-<!--<script src="__PUBLIC__/index/js/bootstrap.js"></script>-->
 <script src="__PUBLIC__/index/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/index/js/common.js"></script>
 
