@@ -75,61 +75,71 @@ class PlantController extends Controller
     public function index(){
 
         $PlantInfo=new PlantInfo();
-        $Plant=$PlantInfo
+        $PlantInfo=$PlantInfo
             ->alias('i')
             ->join('plant_class c','c.plantid=i.plantid')
             ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
-            ->paginate(9);
-        $this->assign('plant',$Plant);
+            ->paginate(9,false, ['query' => request()->param()]);
+        $this->assign('plant',$PlantInfo);
 
         return $this->fetch();
     }
 
     public function search(){
-//        if(Request::instance()->isPost()){
+//        if(Request::instance()->isGet()){
 //            $search=Request::instance()->param();
 //        }else{
+//            $map=Request::instance()->param();
 //            $search=array();
 //            $search['search']='';
-//            $search['mapname']='0';
+//            $search['mapname']='';
 //            $search['family_id']='0';
 //            $search['genus_id']='0';
-//            $mapname=Request::instance()->param();
-//            $search['mapname']=$mapname['mapname'];
+////            if($map['page']!='0') {
+////            }else
+//                if($map['state']=='onlyarea'){
+//                $search['mapname']=$map['mapname'];
+//                }else
+//                    if($map['state']=='areafamily'){
+//                        $search['mapname']=$map['mapname'];
+//                        $familyid=Family::get(['name'=>$map['familyname']]);
+//                        $search['family_id']=$familyid['familyid'];
+//                    }else
+//                        if($map['state']=='onlyfamily'){
+//                            $familyid=Family::get(['name'=>$map['familyname']]);
+//                            $search['family_id']=$familyid['familyid'];
+//                        }
 //        }
-        if(Request::instance()->isPost()){
+//        $search['search']='';
+        if(Request::instance()->isGet()){
             $search=Request::instance()->param();
-        }else{
-            $map=Request::instance()->param();
-            $search=array();
-            $search['search']='';
-            $search['mapname']='';
-            $search['family_id']='0';
-            $search['genus_id']='0';
+            if($search['state']=='search'){
 
-            if($map['state']=='onlyarea'){
-                $search['mapname']=$map['mapname'];
             }else
-                if($map['state']=='areafamily'){
-                    $search['mapname']=$map['mapname'];
-                    $familyid=Family::get(['name'=>$map['familyname']]);
+                if($search['state']=='onlyfamily'){
+                    $search['search']='';
+                    $search['mapname']='';
+                    $familyid=Family::get(['name'=>$search['familyname']]);
                     $search['family_id']=$familyid['familyid'];
+                    $search['genus_id']='0';
                 }else
-                    if($map['state']=='onlyfamily'){
-                        $familyid=Family::get(['name'=>$map['familyname']]);
-                        $search['family_id']=$familyid['familyid'];
-                    }
+                    if($search['state']=='onlyarea'){
+                        $search['search']='';
+                        $search['family_id']='0';
+                        $search['genus_id']='0';
+                    }else
+                        if($search['state']=='areafamily'){
+                            $search['search']='';
+                            $familyid=Family::get(['name'=>$search['familyname']]);
+                            $search['family_id']=$familyid['familyid'];
+                            $search['genus_id']='0';
+                        }
         }
 
 
         //        var_dump($search);
         $Plant=new PlantInfo();
-//        $where=[
-//            ['plantname|alias|area','like','%'.$search['search'].'%'],
-//        ];
-        $where['plant_info.plantname'] = array('like','%'.$search['search'].'%');
-        $where['plant_info.alias'] = array('like','%'.$search['search'].'%');
-        $where['plant_info.area'] = array('like','%'.$search['search'].'%');
+        $where['plant_info.plantname|alias|area']=array('like','%'.$search['search'].'%');
 
         if($search['search']!='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']!='0'){
             //四个搜索内容都不为空
@@ -144,7 +154,7 @@ class PlantController extends Controller
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']!='0'){
             //搜索栏为空，其余三个不为空
             $Plant=$Plant
@@ -157,7 +167,7 @@ class PlantController extends Controller
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']!='0'){
             //区域为空，其余三个不为空
             $Plant=$Plant
@@ -169,7 +179,7 @@ class PlantController extends Controller
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //科名为空，其余三个不为空
             $Plant=$Plant
@@ -180,7 +190,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('g.genusid',$search['genus_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //属为空，其余三个不为空
             $Plant=$Plant
@@ -192,7 +202,7 @@ class PlantController extends Controller
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']!='0'){
             //搜索栏和区域为空，其余不为空
             $Plant=$Plant
@@ -203,7 +213,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //区域和科为空，其余不为空
             $Plant=$Plant
@@ -214,7 +224,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('g.genusid',$search['genus_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //搜索栏和科为空，其余不为空
             $Plant=$Plant
@@ -226,7 +236,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('m.mapname',$search['mapname'])
                 ->where('g.genusid',$search['genus_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //搜索栏和属为空，其余不为空
             $Plant=$Plant
@@ -237,7 +247,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //区域和属为空，其余不为空
             $Plant=$Plant
@@ -247,7 +257,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('f.familyid',$search['family_id'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //科属为空，其余不为空
             $Plant=$Plant
@@ -257,7 +267,7 @@ class PlantController extends Controller
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('m.mapname',$search['mapname'])
                 ->where($where)
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //科不为空，其余为空
             $Plant=$Plant
@@ -266,7 +276,7 @@ class PlantController extends Controller
                 ->join('family f','f.name=c.familyname')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('f.familyid',$search['family_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //属不为空，其余为空
             $Plant=$Plant
@@ -276,7 +286,7 @@ class PlantController extends Controller
                 ->join('genus g','g.name=c.genusname')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('g.genusid',$search['genus_id'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //区域不为空，其余为空
             $Plant=$Plant
@@ -285,22 +295,22 @@ class PlantController extends Controller
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
                 ->where('m.mapname',$search['mapname'])
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //搜索不为空，其余为空
             $Plant=$Plant
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
-                ->where('plant_info.plantname|alias|area','like','%'.$search['search'].'%')
-                ->paginate(9);
+                ->where($where)
+                ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //全为空
             $Plant=$Plant
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
-                ->paginate(9);
+                ->paginate(9,false,['query'=>request()->param()]);
             $this->assign('plant',$Plant);
         }
 //        var_dump($Plant);
@@ -336,7 +346,7 @@ class PlantController extends Controller
         $this->assign('mapname',$plantmap);
 
 //        var_dump($plantmap);
-        return $this->fetch();
+        return $this->fetch('single');
     }
 
     public function test(){
@@ -347,24 +357,31 @@ class PlantController extends Controller
     }
 
     public function test2(){
-        if(Request::instance()->isPost()){
+        if(Request::instance()->isGet()){
             $search=Request::instance()->param();
-        }else{
-            $map=Request::instance()->param();
-            $search=array();
-            $search['search']='';
-            $search['mapname']='0';
-            $search['family_id']='0';
-            $search['genus_id']='0';
-            if($map['state']=='onlyarea'){
-                $search['mapname']=$map['mapname'];
+            if($search['state']=='search'){
+
             }else
-                if($map['state']=='areafamily'){
-                $search['mapname']=$map['mapname'];
-                $familyid=Family::get(['name'=>$map['familyname']]);
-                $search['family_id']=$familyid['familyid'];
-            }
+                if($search['state']=='onlyfamily'){
+                    $search['search']='';
+                    $search['mapname']='';
+                    $familyid=Family::get(['name'=>$search['familyname']]);
+                    $search['family_id']=$familyid['familyid'];
+                    $search['genus_id']='0';
+                }else
+                    if($search['state']=='onlyarea'){
+                        $search['search']='';
+                        $search['family_id']='0';
+                        $search['genus_id']='0';
+                    }else
+                        if($search['state']=='areafamily'){
+                        $search['search']='';
+                        $familyid=Family::get(['name'=>$search['familyname']]);
+                        $search['family_id']=$familyid['familyid'];
+                        $search['genus_id']='0';
+                    }
         }
+        var_dump($search);
     }
 
     public function test3(){
