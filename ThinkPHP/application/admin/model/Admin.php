@@ -2,7 +2,7 @@
 
 
 namespace app\admin\model;
-use think\model;
+use think\Model;
 
 /**
  * Class Admin

@@ -144,7 +144,7 @@ return [
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
-        '__PUBLIC__'=>SITE_URL.'/public/static', //将__PUBLIC__指向tp5下面的public
+        '__PUBLIC__' => SITE_URL.'/public/static', //将__PUBLIC__指向tp5下面的public
 //        '__ROOT__' => '/',
     ],
     // 默认跳转页面对应的模板文件

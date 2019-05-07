@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use app\admin\model\Family;
 use app\admin\model\Genus;
 use app\admin\model\Map;
+use app\admin\model\PicInfo;
 use app\admin\model\PlantAdmin;
 use app\admin\model\PlantClass;
 use app\admin\model\PlantInfo;
@@ -88,16 +89,54 @@ class PlantInfoController extends IndexController
 
         //插入数据后需要刷新plantinfo文件，并重新绘制表格（未完成）
 
+        // 获取表单上传模型 例如上传了001.usdz
+        $models = request()->file('models');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($models){
+            $minfo = $models->validate(['ext'=>'usdz'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'models');
+            if($minfo){
+                // 成功上传后 获取上传信息
+            }else{
+                echo $models->getError();
+            }
+        }else{
+            var_dump($models);
+        }
+        // 获取表单上传图片 例如上传了001.jpg
+        $pic = request()->file('pic');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($pic){
+            $pinfo = $pic->validate(['ext'=>'usdz'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'plant');
+            if($pinfo){
+                // 成功上传后 获取上传信息
+            }else{
+                // 上传失败获取错误信息
+                echo $pic->getError();
+            }
+        }else{
+            var_dump($pic);
+        }
+
         //插入信息到plant_info表
         $PlantInfo=new PlantInfo();
         $PlantInfo->plantname=$plantdata['plantname'];
         $PlantInfo->alias=$plantdata['alias'];
         $PlantInfo->sciname=$plantdata['sciname'];
         $PlantInfo->area=$plantdata['area'];
-        $PlantInfo->models=$plantdata['models'];
+        $PlantInfo->models=$minfo->getSaveName();
         $PlantInfo->introduce=$plantdata['introduce'];
 //        var_dump($PlantInfo);
         $PlantInfo->save();
+
+        $PicInfo=new PicInfo();
+        $PicInfo->plantid=$PlantInfo->plantid;
+        $PicInfo->plantpic=$pic->getSaveName();
+        $PicInfo->plantnum=1;
+        $PicInfo->save();
 
         //插入信息到plant_class表
         $PlantClass=new PlantClass();
@@ -200,14 +239,44 @@ class PlantInfoController extends IndexController
         $Map=Map::all();
         $this->assign('map',$Map);
 
-        //根据传递过来的plantname匹配对应MPlantClass里的值
-        $PlantClass=PlantClass::get($plantname);
-        $this->assign('plantclass',$PlantClass);
+        //根据传递过来的plantname匹配对应PlantClass里的值
+        $plantclass=PlantClass::get($plantname);
+        $PlantClass=new PlantClass();
+        $PlantClass=$PlantClass
+            ->alias('c')
+            ->join('family f','f.name=c.familyname')
+            ->join('genus g','g.name=c.genusname')
+            ->field('c.plantname,c.familyname,c.genusname,f.familyid,g.genusid')
+            ->where('c.plantname',$plantclass['plantname'])
+            ->select();
+        $this->assign('plantclass',$PlantClass[0]);
 
 //        var_dump($PlantInfo);
 //        var_dump($PlantMap);
-//        var_dump($PlantClass);
+//        var_dump($PlantClass[0]);
         return $this->fetch();
+    }
+
+    public function test(){
+//        $plant=Request::instance()->param();
+//        var_dump($plant);
+//        //判断PlantClass表中是否存在数据
+//        if(is_null($PlantClass=PlantClass::get($plant['plantid']))){
+//            return $this->error('PlantClass不存在id='.$plant['plantid'].'的数据');
+//        }
+//        $PlantClass->plantname=$plant['plantname'];
+//        $PlantClass->familyname=Family::where('familyid',$plant['familyid'])->value('name');
+//        $PlantClass->genusname=Genus::where('genusid',$plant['genusid'])->value('name');
+        $plantclass['plantname']='测试ss';
+        $PlantClass=new PlantClass();
+        $PlantClass=$PlantClass
+            ->alias('c')
+            ->join('family f','f.name=c.familyname')
+            ->join('genus g','g.name=c.genusname')
+            ->field('c.plantname,c.familyname,c.genusname,f.familyid,g.genusid')
+            ->where('c.plantname',$plantclass['plantname'])
+            ->select();
+        var_dump($PlantClass[0]);
     }
 
     /**
@@ -246,6 +315,13 @@ class PlantInfoController extends IndexController
         $PlantClass->familyname=Family::where('familyid',$plant['familyid'])->value('name');
         $PlantClass->genusname=Genus::where('genusid',$plant['genusid'])->value('name');
         $PlantClass->isUpdate(true)->save();
+        $PlantClass=$PlantClass
+            ->alias('c')
+            ->join('family f','f.name=c.familyname')
+            ->join('genus g','g.name=c.genusname')
+            ->field('c.plantname,c.familyname,c.genusname,f.familyid,g.genusid')
+            ->where('c.plantname',$plant['plantname'])
+            ->select();
 //        var_dump($PlantClass);
 
         //写入PlantInfo新数据
@@ -282,7 +358,7 @@ class PlantInfoController extends IndexController
         $this->assign('family',$family);
         $this->assign('genus',$genus);
         $this->assign('plantinfo',$PlantInfo);
-        $this->assign('plantclass',$PlantClass);
+        $this->assign('plantclass',$PlantClass[0]);
         $Map=Map::all();
         $this->assign('map',$Map);
 
@@ -326,6 +402,10 @@ class PlantInfoController extends IndexController
         PlantInfo::saveData();
 
         return $this->fetch('index');
+    }
+
+    public function picture(){
+        return $this->fetch();
     }
 
 

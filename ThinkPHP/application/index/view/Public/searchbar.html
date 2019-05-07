@@ -14,7 +14,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12 col-md-12 align-content-center">
-                                <form action="{:url('index/Plant/search')}" method="get">
+                                <form action="{:url('index/plant/search')}" method="get">
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <input type="text" class="form-control my-2 my-lg-1" name="search" id="search" placeholder="Searching">
@@ -60,14 +60,14 @@
     <!-- Container End -->
 </section>
 
-<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js"></script>
-<script src="__PUBLIC__/index/js/jquery.min.js"></script>
+<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/index/js/jquery.min.js" type="text/javascript"></script>
 <script>
     $('#family_id').change(function () {
         $familyid = $('#family_id').val();
         $.ajax({
             type: "POST",
-            url: "{:url('index/Plant/getGenus')}",
+            url: "{:url('index/plant/getGenus')}",
             dataType: "json",
             data: 'familyid=' + $familyid,
             success: function (data) {

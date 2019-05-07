@@ -102,7 +102,7 @@ class LoginController extends Controller
                 ->update(['logintime'=>date('Y-m-d H:i:s'),'IP'=>Request::instance()->ip()]);
             Admin::saveData();
 
-            return $this->success('登陆成功',url('Index/index'));
+            return $this->success('登陆成功',url('index/index'));
         }else{
             return $this->error('用户名或密码不正确',url('index'));
         }

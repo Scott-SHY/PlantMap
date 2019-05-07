@@ -5,6 +5,7 @@ namespace app\index\controller;
 use app\index\model\Family;
 use app\index\model\Genus;
 use app\index\model\Map;
+use app\index\model\PicInfo;
 use app\index\model\PlantClass;
 use app\index\model\PlantInfo;
 use app\index\model\PlantMap;
@@ -345,7 +346,13 @@ class PlantController extends Controller
             ->select();
         $this->assign('mapname',$plantmap);
 
-//        var_dump($plantmap);
+        $picinfo=new PicInfo();
+        $picinfo=$picinfo
+            ->where('plantid',$plant['plantid'])
+            ->select();
+        $this->assign('picinfo',$picinfo);
+
+//        var_dump($picinfo);
         return $this->fetch('single');
     }
 

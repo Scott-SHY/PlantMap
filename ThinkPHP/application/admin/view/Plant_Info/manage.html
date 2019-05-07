@@ -19,19 +19,19 @@
     <link href="__PUBLIC__/admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="__PUBLIC__/admin/css/app.min.css" rel="stylesheet" type="text/css"/>
     <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="__PUBLIC__/admin/js/style.js"></script>
+    <script src="__PUBLIC__/admin/js/style.js" type="text/javascript"></script>
 
 </head>
 
 <body>
 <div id="wrapper">
 
-    {include file="Public/sidemenu"/}
+    {include file="public/sidemenu"/}
 
     <div class="content-page">
         <div class="content">
 
-            {include file="Public/header"/}
+            {include file="public/header"/}
 
             <div class="container-fluid">
 
@@ -40,7 +40,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{:url('admin/Index/index')}">后台</a></li>
+                                    <li class="breadcrumb-item"><a href="{:url('admin/index/index')}">后台</a></li>
                                     <li class="breadcrumb-item active">数据修改</li>
                                 </ol>
                             </div>
@@ -113,30 +113,29 @@
                                                 <label class="col-sm-2">科 :</label>
                                                 <select class="custom-select col-sm-3" name="familyid" id="familyid"
                                                         required>
-                                                    <option>{$plantclass->getData('familyname')}</option>
+                                                    <option value="{$plantclass->getData('familyid')}">{$plantclass->getData('familyname')}</option>
                                                     {volist name="family" id="data2"}
                                                     <option value="{$data2.familyid}">{$data2.name}</option>
                                                     {/volist}
                                                 </select>
-                                                <!--                                                <button type="submit" class="btn btn-primary ml-4">新建 科</button>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
                                                 <label class="col-sm-2">属 :</label>
                                                 <select class="custom-select col-sm-3" name="genusid" id="genusid"
                                                         required>
-                                                    <option selected>{$plantclass->getData('genusname')}</option>
+                                                    <option value="{$plantclass->getData('genusid')}">{$plantclass->getData('genusname')}</option>
                                                 </select>
-                                                <!--                                                <button type="submit" class="btn btn-primary ml-4">新建 属</button>-->
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group" align="center">
-                                                <img src="__PUBLIC__/admin/images/avatar-1.jpg" class="mb-4">
                                                 <div class="form-group row">
                                                     <label class="col-sm-2">图 片:</label>
-                                                    <input type="file" class="form-control col-sm-10">
+                                                    <button type="submit" class="btn btn-primary btn-sm" formaction="picture">图片管理</button>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <a rel="ar" href="__PUBLIC__/uploads/models/ironman.usdz"
+                                                       enctype="model/usd">
+                                                        <img src="__PUBLIC__/uploads/plant/default.png" style="width: 50%">
+                                                    </a>
                                                     <label class="col-sm-2">模 型:</label>
                                                     <input type="file" class="form-control col-sm-10" name="models"
                                                            value="{$plantinfo->getData('models')}">
@@ -160,12 +159,9 @@
     </div> <!-- content -->
 
     <!-- Footer Start -->
-    {include file="Public/footer"/}
-    <!--    <include src="footer.html"></include>-->
+    {include file="public/footer"/}
 
 </div>
-
-<!--</div>-->
 
 <div class="modal fade" id="addcontactmodal" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel"
      aria-hidden="true">
@@ -196,16 +192,16 @@
                         <input type="text" class="my-form col-sm-10" name="area" id="area" placeholder="分布备注">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="checkbox" name="map[]" id="map1" value="北苑"><label>北苑</label>
-                                <input type="checkbox" name="map[]" id="map2" value="南苑"><label>南苑</label>
-                                <input type="checkbox" name="map[]" id="map3" value="牌坊"><label>牌坊</label>
-                                <input type="checkbox" name="map[]" id="map4" value="图书馆"><label>图书馆</label>
+                                <input type="checkbox" name="map[]" id="map1" value="北苑区"><label>北苑区</label>
+                                <input type="checkbox" name="map[]" id="map2" value="南苑区"><label>南苑区</label>
+                                <input type="checkbox" name="map[]" id="map3" value="牌坊区"><label>牌坊区</label>
+                                <input type="checkbox" name="map[]" id="map4" value="图书馆区"><label>图书馆区</label>
                             </div>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="map[]" id="map5" value="教学楼"><label>教学楼</label>
-                                <input type="checkbox" name="map[]" id="map6" value="理科楼"><label>理科楼</label>
-                                <input type="checkbox" name="map[]" id="map7" value="行政楼"><label>行政楼</label>
-                                <input type="checkbox" name="map[]" id="map8" value="逸夫楼"><label>逸夫楼</label>
+                                <input type="checkbox" name="map[]" id="map5" value="教学楼区"><label>教学楼区</label>
+                                <input type="checkbox" name="map[]" id="map6" value="理科楼区"><label>理科楼区</label>
+                                <input type="checkbox" name="map[]" id="map7" value="行政楼区"><label>行政楼区</label>
+                                <input type="checkbox" name="map[]" id="map8" value="逸夫楼区"><label>逸夫楼区</label>
                             </div>
                         </div>
                     </div>
@@ -248,22 +244,22 @@
 
 
 <!-- App js -->
-<script src="__PUBLIC__/admin/js/vendor.min.js"></script>
-<script src="__PUBLIC__/admin/js/app.min.js"></script>
+<script src="__PUBLIC__/admin/js/vendor.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/app.min.js" type="text/javascript"></script>
 
 <!-- third party js -->
-<script src="__PUBLIC__/admin/js/jquery.datatables.js"></script>
-<script src="__PUBLIC__/admin/js/datatables.bootstrap4.js"></script>
-<script src="__PUBLIC__/admin/js/datatables.responsive.min.js"></script>
-<script src="__PUBLIC__/admin/js/responsive.bootstrap4.min.js"></script>
-
-<script src="__PUBLIC__/admin/js/datatables.buttons.min.js"></script>
-<script src="__PUBLIC__/admin/js/buttons.bootstrap4.min.js"></script>
-<script src="__PUBLIC__/admin/js/buttons.html5.min.js"></script>
-<script src="__PUBLIC__/admin/js/buttons.flash.min.js"></script>
-<script src="__PUBLIC__/admin/js/buttons.print.min.js"></script>
-<script src="__PUBLIC__/admin/js/datatables.keytable.min.js"></script>
-<script src="__PUBLIC__/admin/js/datatables.select.min.js"></script>
+<script src="__PUBLIC__/admin/js/jquery.datatables.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/datatables.bootstrap4.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/datatables.responsive.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/datatables.buttons.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/buttons.flash.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/buttons.print.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/datatables.keytable.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/datatables.select.min.js" type="text/javascript"></script>
 <!-- third party js ends -->
 
 <script>
@@ -308,3 +304,4 @@
     });
 </script>
 </body>
+</html>

@@ -14,14 +14,14 @@ use think\Request;
 class AdminController extends IndexController
 {
     public function index(){
-        if(session('authority')==1){
-            Admin::saveData();
-        }else{
-            return $this->error('您没有权限访问此页面');
-        }
+//        if(session('authority')==1){
+//            Admin::saveData();
+//        }else{
+//            return $this->error('您没有权限访问此页面');
+//        }
         //每次调用方法都会更新一遍数据？效率低下，应该把静态方法放在增删改操作之后调用
         //更新数据
-//        Admin::saveData();
+        Admin::saveData();
 
         return $this->fetch();
     }

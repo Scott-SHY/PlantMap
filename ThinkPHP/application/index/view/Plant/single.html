@@ -2,294 +2,318 @@
 <html lang="en">
 <head>
 
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>植物信息</title>
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>植物信息</title>
 
-	<link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
-	<!-- Bootstrap -->
-<!--	<link rel="stylesheet" href="css/bootstrap.css">-->
-	<link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.min.css">
-	<link rel="stylesheet" href="__PUBLIC__/index/css/style.css">
-
-	<!-- Font Awesome -->
-	<link href="__PUBLIC__/index/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<script src="__PUBLIC__/index/js/include.js"></script>
-
-
+    <link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
+    <!-- Bootstrap -->
+    <!--	<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" href="__PUBLIC__/index/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="__PUBLIC__/index/css/style.css" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" type="text/css">
+    <!--	<link href="__PUBLIC__/index/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->
+    <script src="__PUBLIC__/index/js/include.js" type="text/javascript"></script>
+    <style type="text/css">
+        .exampleImg{
+            width:50%;
+            cursor:pointer;
+        }
+    </style>
 </head>
 
 <body>
-{include file="Public/header"/}
+{include file="public/header"/}
 
-{include file="Public/searchbar"/}
+{include file="public/searchbar"/}
 <!--搜索框-->
 
 <section class="section bg-gray">
-	<!-- Container Start -->
-	<div class="container">
-		<div class="row">
-			<!-- Left sidebar -->
-			<div class="col-md-6">
-				<div class="product-details text-center">
-					<h1 class="product-title">{$plant->getData('plantname')}</h1>
-					<div class="product-meta">
-						<ul class="list-inline">
-							<li class="list-inline-item"><i class="fa fa-book"></i>学名:{$plant->getData('sciname')}</li>
-							<li class="list-inline-item"><i class="fa fa-envira"></i>科:{$plant->getData('familyname')}</li>
-							<li class="list-inline-item"><i class="fa fa-leaf"></i>属:{$plant->getData('genusname')}</li>
-						</ul>
-					</div>
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <!-- Left sidebar -->
+            <div class="col-md-6">
+                <div class="product-details text-center">
+                    <h1 class="product-title">{$plant->getData('plantname')}</h1>
+                    <div class="product-meta mt-5">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-envira"></i>科:{$plant->getData('familyname')}</li>
+                            <li class="list-inline-item"><i class="fa fa-leaf"></i>属:{$plant->getData('genusname')}</li>
+                            <li class="list-inline-item"><i class="fa fa-book"></i>学名:{$plant->getData('sciname')}</li>
+                        </ul>
+                    </div>
 
-					<!-- product slider -->
-<!--					<div class="product-slider">-->
-<!--						<div class="product-slider-item my-4" data-image="images/products-1.jpg">-->
-<!--							<img class="img-fluid w-100" src="images/products-1.jpg" alt="product-img">-->
-<!--						</div>-->
-<!--						<div class="product-slider-item my-4" data-image="images/products-2.jpg">-->
-<!--							<img class="d-block img-fluid w-100" src="images/products-2.jpg" alt="Second slide">-->
-<!--						</div>-->
-<!--						<div class="product-slider-item my-4" data-image="images/products-3.jpg">-->
-<!--							<img class="d-block img-fluid w-100" src="images/products-3.jpg" alt="Third slide">-->
-<!--						</div>-->
-<!--						<div class="product-slider-item my-4" data-image="images/products-1.jpg">-->
-<!--							<img class="d-block img-fluid w-100" src="images/products-1.jpg" alt="Third slide">-->
-<!--						</div>-->
-<!--						<div class="product-slider-item my-4" data-image="images/products-2.jpg">-->
-<!--							<img class="d-block img-fluid w-100" src="images/products-2.jpg" alt="Third slide">-->
-<!--						</div>-->
-<!--					</div>-->
-					<!-- product slider -->
+                    <div id="carousel-example" class="carousel slider product-slider" data-ride="carousel">
 
-					<div id="carousel-example" class="carousel slider product-slider" data-ride="carousel">
-						<!-- 指示符 -->
-						<ul class="carousel-indicators">
-							<li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-							<li data-target="#carousel-example" data-slide-to="1"></li>
-							<li data-target="#carousel-example" data-slide-to="2"></li>
-						</ul>
+                        <!-- 轮播图片 -->
+                        <div class="carousel-inner my-img">
+                            {volist name="picinfo" id="picinfo"}
+                            <div class="carousel-item {if condition=" $picinfo->getData('plantnum') eq 1 "}active{/if}">
+                                <img src="__PUBLIC__/uploads/plant/{$picinfo->getData('plantpic')}"
+                                     style="width: 80%;height: auto" class="exampleImg" onclick="$(this).ImgZoomIn();">
+<!--                                <div class="carousel-caption">-->
+<!--                                </div>-->
+                            </div>
+                            {/volist}
+                            <!--							<div class="carousel-item active">-->
+                            <!--								<img src="__PUBLIC__/uploads/plant/default.png">-->
+                            <!--								<div class="carousel-caption">-->
+                            <!--								</div>-->
+                            <!--							</div>-->
+                            <!--							<div class="carousel-item">-->
+                            <!--								<img src="__PUBLIC__/uploads/plant/default.png">-->
+                            <!--								<div class="carousel-caption">-->
+                            <!--								</div>-->
+                            <!--							</div>-->
+                            <!--							<div class="carousel-item">-->
+                            <!--								<img src="__PUBLIC__/uploads/plant/default.png">-->
+                            <!--								<div class="carousel-caption">-->
+                            <!--								</div>-->
+                            <!--							</div>-->
+                        </div>
 
-						<!-- 轮播图片 -->
-						<div class="carousel-inner my-img">
-							<div class="carousel-item active">
-								<img src="__PUBLIC__/uploads/plant/default.png">
-								<div class="carousel-caption">
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="__PUBLIC__/uploads/plant/default.png">
-								<div class="carousel-caption">
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="__PUBLIC__/uploads/plant/default.png">
-								<div class="carousel-caption">
-								</div>
-							</div>
-						</div>
-
-						<!-- 左右切换按钮 -->
-						<a class="left carousel-control" href="#carousel-example" role="button" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="right carousel-control" href="#carousel-example" role="button" data-slide="next">
-						    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="product-details text-center">
-					<div class="content pt-3">
-						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-								 aria-selected="true">简介</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-								 aria-selected="false">属性</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-								 aria-selected="false">链接</a>
-							</li>
-						</ul>
-						<div class="tab-content" id="pills-tabContent">
-							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title">简介</h3>
-								<p>{$plant->getData('introduce')}</p>
+                        <!-- 左右切换按钮 -->
+                        <div class="mt-4">
+                            <a class="left carousel-control" href="#carousel-example" role="button" data-slide="prev">
+                                <span class="fa fa-angle-left fa-2x" aria-hidden="false"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example" role="button" data-slide="next">
+                                    <span class="fa fa-angle-right fa-2x" aria-hidden="false"></span>
+                                    <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-details text-center">
+                    <div class="content pt-3">
+                        <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                   role="tab" aria-controls="pills-home"
+                                   aria-selected="true">简介</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                   role="tab" aria-controls="pills-profile"
+                                   aria-selected="false">属性</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                   role="tab" aria-controls="pills-contact"
+                                   aria-selected="false">链接</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                 aria-labelledby="pills-home-tab">
+                                <h3 class="tab-title">简介</h3>
+                                <p>{$plant->getData('introduce')}</p>
 
 
-							</div>
-							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-								<h3 class="tab-title">属性</h3>
-								<table class="table table-bordered product-table">
-									<tbody>
-										<tr>
-											<td>名称</td>
-											<td>{$plant->getData('plantname')}</td>
-										</tr>
-										<tr>
-											<td>别名</td>
-											<td>{$plant->getData('alias')}</td>
-										</tr>
-										<tr>
-											<td>学名</td>
-											<td>{$plant->getData('sciname')}</td>
-										</tr>
-										<tr>
-											<td>科</td>
-											<td>{$plant->getData('familyname')}</td>
-										</tr>
-										<tr>
-											<td>属</td>
-											<td>{$plant->getData('genusname')}</td>
-										</tr>
-										<tr>
-											<td>分布区域</td>
-											<td>
-												{volist name="mapname" id="map"}
-												{$map->getData('mapname').'、'}
-												{/volist}
-											</td>
-										</tr>
-										<tr>
-											<td>具体位置</td>
-											<td>{$plant->getData('area')}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                 aria-labelledby="pills-profile-tab">
+                                <h3 class="tab-title">属性</h3>
+                                <table class="table table-bordered product-table">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 25%">名称</td>
+                                        <td>{$plant->getData('plantname')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>别名</td>
+                                        <td>{$plant->getData('alias')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>学名</td>
+                                        <td>{$plant->getData('sciname')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>科</td>
+                                        <td>{$plant->getData('familyname')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>属</td>
+                                        <td>{$plant->getData('genusname')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>分布区域</td>
+                                        <td>
+                                            {volist name="mapname" id="map"}
+                                            {$map->getData('mapname').'、'}
+                                            {/volist}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>具体位置</td>
+                                        <td>{$plant->getData('area')}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-								<h3 class="tab-title">二维码</h3>
-								<div class="product-review">
-									<div class="media">
-										<!-- Avater -->
-<!--										<img src="images/user/user-thumb.jpg" alt="avater">-->
-										<div class="media-body">
-<!--											<div class="name">-->
-<!--												<h5>Jessica Brown</h5>-->
-<!--											</div>-->
-<!--											<div class="date">-->
-<!--												<p>Mar 20, 2018</p>-->
-<!--											</div>-->
-											<div class="review-comment">
-												<a rel="ar" href="__PUBLIC__/uploads/models/ironman.usdz" enctype="model/usd">
-													<img src="__PUBLIC__/uploads/plant/default.png">
-												</a>
-											</div>
-										</div>
-									</div>
-									<div class="review-submission">
-										<h3 class="tab-title">链接</h3>
-										<div class="media-body">
-											<div class="review-comment">
-												<p>
-													Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape
-													riamipsa eaque.
-												</p>
-											</div>
-										</div>
-										<!-- Rate -->
-<!--										<div class="rate">-->
-<!--											<div class="starrr"></div>-->
-<!--										</div>-->
-<!--										<div class="review-submit">-->
-<!--											<form action="#" class="row">-->
-<!--&lt;!&ndash;												<div class="col-lg-6">&ndash;&gt;-->
-<!--&lt;!&ndash;													<input type="text" name="name" id="name" class="form-control" placeholder="Name">&ndash;&gt;-->
-<!--&lt;!&ndash;												</div>&ndash;&gt;-->
-<!--&lt;!&ndash;												<div class="col-lg-6">&ndash;&gt;-->
-<!--&lt;!&ndash;													<input type="email" name="email" id="email" class="form-control" placeholder="Email">&ndash;&gt;-->
-<!--&lt;!&ndash;												</div>&ndash;&gt;-->
-<!--												<div class="col-12">-->
-<!--													<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message" style="height: 90%"></textarea>-->
-<!--												</div>-->
-<!--												<div class="col-12">-->
-<!--													<button type="submit" class="btn btn-main">Sumbit</button>-->
-<!--												</div>-->
-<!--											</form>-->
-<!--										</div>-->
-<!--									</div>-->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-<!--			<div class="col-md-4">-->
-<!--				<div class="sidebar">-->
-<!--&lt;!&ndash;					<div class="widget price text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;						<h4>Price</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;						<p>$230</p>&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--					&lt;!&ndash; User Profile widget &ndash;&gt;-->
-<!--&lt;!&ndash;					<div class="widget user text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;						<img class="rounded-circle img-fluid mb-5 px-5" src="images/user/user-thumb.jpg" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;						<h4><a href="">Jonathon Andrew</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;						<p class="member-time">Member Since Jun 27, 2017</p>&ndash;&gt;-->
-<!--&lt;!&ndash;						<a href="">See all ads</a>&ndash;&gt;-->
-<!--&lt;!&ndash;						<ul class="list-inline mt-20">&ndash;&gt;-->
-<!--&lt;!&ndash;							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;							<li class="list-inline-item"><a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an&ndash;&gt;-->
-<!--&lt;!&ndash;									offer</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--					&lt;!&ndash; Map Widget &ndash;&gt;-->
-<!--					<div class="widget map">-->
-<!--						<div class="map">-->
-<!--                            <h5 class="widget-header text-center">二维码</h5>-->
-<!--							<div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"></div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					&lt;!&ndash; Rate Widget &ndash;&gt;-->
-<!--					<div class="widget rate">-->
-<!--						&lt;!&ndash; Heading &ndash;&gt;-->
-<!--						<h5 class="widget-header text-center">链接</h5>-->
-<!--						&lt;!&ndash; Rate &ndash;&gt;-->
-<!--&lt;!&ndash;						<div class="starrr"></div>&ndash;&gt;-->
-<!--					</div>-->
-<!--					&lt;!&ndash; Safety tips widget &ndash;&gt;-->
-<!--&lt;!&ndash;					<div class="widget disclaimer">&ndash;&gt;-->
-<!--&lt;!&ndash;						<h5 class="widget-header">Safety Tips</h5>&ndash;&gt;-->
-<!--&lt;!&ndash;						<ul>&ndash;&gt;-->
-<!--&lt;!&ndash;							<li>Meet seller at a public place</li>&ndash;&gt;-->
-<!--&lt;!&ndash;							<li>Check the item before you buy</li>&ndash;&gt;-->
-<!--&lt;!&ndash;							<li>Pay only after collecting the item</li>&ndash;&gt;-->
-<!--&lt;!&ndash;							<li>Pay only after collecting the item</li>&ndash;&gt;-->
-<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--					&lt;!&ndash; Coupon Widget &ndash;&gt;-->
-<!--&lt;!&ndash;					<div class="widget coupon text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;						&lt;!&ndash; Coupon description &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;						<p>Have a great product to post ? Share it with&ndash;&gt;-->
-<!--&lt;!&ndash;							your fellow users.&ndash;&gt;-->
-<!--&lt;!&ndash;						</p>&ndash;&gt;-->
-<!--&lt;!&ndash;						&lt;!&ndash; Submii button &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;						<a href="" class="btn btn-transparent-white">Submit Listing</a>&ndash;&gt;-->
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                 aria-labelledby="pills-contact-tab">
+                                <h3 class="tab-title">链接</h3>
+                                <div class="product-review">
+                                    <div class="media">
+                                        <!-- Avater -->
+                                        <!--										<img src="images/user/user-thumb.jpg" alt="avater">-->
+                                        <div class="media-body">
+                                            <!--											<div class="name">-->
+                                            <!--												<h5>Jessica Brown</h5>-->
+                                            <!--											</div>-->
+                                            <!--											<div class="date">-->
+                                            <!--												<p>Mar 20, 2018</p>-->
+                                            <!--											</div>-->
+                                            <div class="review-comment">
+                                                <a rel="ar" href="__PUBLIC__/uploads/models/ironman.usdz"
+                                                   enctype="model/usd">
+                                                    <img src="__PUBLIC__/uploads/plant/default.png" style="width: 50%">
+                                                </a>
+                                                <p class="mt-3">请在IOS12的设备上用safari打开链接</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-submission">
+                                        <h3 class="tab-title">测试</h3>
+                                        <div class="media-body">
+                                            <div class="review-comment">
+                                                <p>
+                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                                    accusantium doloremqe laudant tota rem ape
+                                                    riamipsa eaque.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Rate -->
+                                        <!--										<div class="rate">-->
+                                        <!--											<div class="starrr"></div>-->
+                                        <!--										</div>-->
+                                        <!--										<div class="review-submit">-->
+                                        <!--											<form action="#" class="row">-->
+                                        <!--&lt;!&ndash;												<div class="col-lg-6">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;													<input type="text" name="name" id="name" class="form-control" placeholder="Name">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;												</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;												<div class="col-lg-6">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;													<input type="email" name="email" id="email" class="form-control" placeholder="Email">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;												</div>&ndash;&gt;-->
+                                        <!--												<div class="col-12">-->
+                                        <!--													<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message" style="height: 90%"></textarea>-->
+                                        <!--												</div>-->
+                                        <!--												<div class="col-12">-->
+                                        <!--													<button type="submit" class="btn btn-main">Sumbit</button>-->
+                                        <!--												</div>-->
+                                        <!--											</form>-->
+                                        <!--										</div>-->
+                                        <!--									</div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--			<div class="col-md-4">-->
+                <!--				<div class="sidebar">-->
+                <!--&lt;!&ndash;					<div class="widget price text-center">&ndash;&gt;-->
+                <!--&lt;!&ndash;						<h4>Price</h4>&ndash;&gt;-->
+                <!--&lt;!&ndash;						<p>$230</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;					</div>&ndash;&gt;-->
+                <!--					&lt;!&ndash; User Profile widget &ndash;&gt;-->
+                <!--&lt;!&ndash;					<div class="widget user text-center">&ndash;&gt;-->
+                <!--&lt;!&ndash;						<img class="rounded-circle img-fluid mb-5 px-5" src="images/user/user-thumb.jpg" alt="">&ndash;&gt;-->
+                <!--&lt;!&ndash;						<h4><a href="">Jonathon Andrew</a></h4>&ndash;&gt;-->
+                <!--&lt;!&ndash;						<p class="member-time">Member Since Jun 27, 2017</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;						<a href="">See all ads</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;						<ul class="list-inline mt-20">&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li class="list-inline-item"><a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an&ndash;&gt;-->
+                <!--&lt;!&ndash;									offer</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;					</div>&ndash;&gt;-->
+                <!--					&lt;!&ndash; Map Widget &ndash;&gt;-->
+                <!--					<div class="widget map">-->
+                <!--						<div class="map">-->
+                <!--                            <h5 class="widget-header text-center">二维码</h5>-->
+                <!--							<div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"></div>-->
+                <!--						</div>-->
+                <!--					</div>-->
+                <!--					&lt;!&ndash; Rate Widget &ndash;&gt;-->
+                <!--					<div class="widget rate">-->
+                <!--						&lt;!&ndash; Heading &ndash;&gt;-->
+                <!--						<h5 class="widget-header text-center">链接</h5>-->
+                <!--						&lt;!&ndash; Rate &ndash;&gt;-->
+                <!--&lt;!&ndash;						<div class="starrr"></div>&ndash;&gt;-->
+                <!--					</div>-->
+                <!--					&lt;!&ndash; Safety tips widget &ndash;&gt;-->
+                <!--&lt;!&ndash;					<div class="widget disclaimer">&ndash;&gt;-->
+                <!--&lt;!&ndash;						<h5 class="widget-header">Safety Tips</h5>&ndash;&gt;-->
+                <!--&lt;!&ndash;						<ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li>Meet seller at a public place</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li>Check the item before you buy</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li>Pay only after collecting the item</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;							<li>Pay only after collecting the item</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;					</div>&ndash;&gt;-->
+                <!--					&lt;!&ndash; Coupon Widget &ndash;&gt;-->
+                <!--&lt;!&ndash;					<div class="widget coupon text-center">&ndash;&gt;-->
+                <!--&lt;!&ndash;						&lt;!&ndash; Coupon description &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;						<p>Have a great product to post ? Share it with&ndash;&gt;-->
+                <!--&lt;!&ndash;							your fellow users.&ndash;&gt;-->
+                <!--&lt;!&ndash;						</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;						&lt;!&ndash; Submii button &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;						<a href="" class="btn btn-transparent-white">Submit Listing</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;					</div>&ndash;&gt;-->
 
-<!--				</div>-->
-<!--			</div>-->
+                <!--				</div>-->
+                <!--			</div>-->
 
-		</div>
-	</div>
-	<!-- Container End -->
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
 </section>
 
 <!-- Footer Bottom -->
-{include file="Public/footer"/}
+{include file="public/footer"/}
 
-<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js"></script>
-<script src="__PUBLIC__/index/js/jquery.min.js"></script>
-<script src="__PUBLIC__/index/js/bootstrap.min.js"></script>
-
+<script src="__PUBLIC__/index/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/index/js/jquery.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/index/js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+    $.fn.ImgZoomIn = function () {
+        bgstr = '<div id="ImgZoomInBG" style=" background:#000000; filter:Alpha(Opacity=70); opacity:0.5; position:fixed; left: 0; top: 0; z-index:10000; width:100%; height:100%; display:none;"><iframe src="about:blank" frameborder="5px" scrolling="yes" style="width:100%; height:100%;"></iframe></div>';
+//alert($(this).attr('src'));
+        imgstr = '<img id="ImgZoomInImage" src="' + $(this).attr('src')+'" onclick=$(\'#ImgZoomInImage\').hide();$(\'#ImgZoomInBG\').hide(); style="cursor:pointer; display:none; position:absolute; z-index:10001;" />';
+        if ($('#ImgZoomInBG').length < 1) {
+            $('body').append(bgstr);
+        }
+        if ($('#ImgZoomInImage').length < 1) {
+            $('body').append(imgstr);
+        }
+        else {
+            $('#ImgZoomInImage').attr('src', $(this).attr('src'));
+        }
+//alert($(window).scrollLeft());
+//alert( $(window).scrollTop());
+        $('#ImgZoomInImage').css('left', $(window).scrollLeft() + ($(window).width() - $('#ImgZoomInImage').width()) / 2);
+        $('#ImgZoomInImage').css('top', $(window).scrollTop() + ($(window).height() - $('#ImgZoomInImage').height()) / 2);
+        $('#ImgZoomInBG').show();
+        $('#ImgZoomInImage').show();
+    };
+    $(document).ready(function () {
+        $("#imgTest").bind("click", function () {
+            $(this).ImgZoomIn();
+        });
+    });
+</script>
 </body>
 
 </html>

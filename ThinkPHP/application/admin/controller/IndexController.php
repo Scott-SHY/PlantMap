@@ -22,7 +22,7 @@ class IndexController extends Controller
         //验证用户是否登陆
         if(!Admin::isLogin()){
             //循环跳转？？
-            return $this->error('please login first',url('Login/index'));
+            return $this->error('please login first',url('login/index'));
         }
     }
 
