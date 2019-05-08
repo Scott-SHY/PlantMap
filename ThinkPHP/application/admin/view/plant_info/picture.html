@@ -49,12 +49,63 @@
                         </div>
                     </div>
                 </div>
-
+                <form action="insertpic" method="post" enctype="multipart/form-data">
+                    <input hidden name="plantid" value="{$picinfo[0]->getData('plantid')}">
+                    <label>新增图片:</label>
+                    <input type="file" class="btn btn-sm btn-light" name="insertpic">
+                    <button type="submit" class="btn btn-sm btn-primary">提交</button>
+                </form>
+                <table id="plantpic" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th style="width: 30%">图片</th>
+                        <th>植物名</th>
+                        <th>路径</th>
+                        <th>动作</th>
+                    </tr>
+                    </thead>
+                    {volist name="picinfo" id="picinfo"}
+                    <tbody>
+                        <td>{$picinfo->getData('picid')}</td>
+                        <td><img src="__PUBLIC__/uploads/plant/{$picinfo->getData('plantpic')}" style="width: 60%" class="exampleImg" onclick="$(this).ImgZoomIn();"></td>
+                        <td>{$picinfo->getData('plantname')}</td>
+                        <td>./uploads/plant/{$picinfo->getData('plantpic')}</td>
+                        <td>
+                            <form action="deleteP" method="post">
+                            <button class="btn btn-sm btn-cancel" name="picid" value="{$picinfo->getData('picid')}">
+                            <i class="mdi mdi-delete mr-1 text-muted">删除</i></button>
+                            </form>
+                        </td>
+                    </tbody>
+                    {/volist}
+                </table>
 
             </div>
         </div>
         {include file="public/footer"/}
     </div>
+</div>
+
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="deleteModalLabel">确认删除？</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body p-4">
+                <form role="form" action="deleteP" method="post">
+                    <input type="hidden" name="picid" id="picid" value="">
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-danger waves-effect waves-light">删除</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.model-content -->
+    </div><!-- /.model-dialog -->
 </div>
 
 
@@ -67,6 +118,40 @@
 <script src="__PUBLIC__/admin/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="__PUBLIC__/admin/js/jquery.min.js" type="text/javascript"></script>
 <!-- third party js ends -->
+<script>
+    $.fn.ImgZoomIn = function () {
+        bgstr = '<div id="ImgZoomInBG" style=" background:#000000; filter:Alpha(Opacity=70); opacity:0.5; position:fixed; left: 0; top: 0; z-index:10000; width:100%; height:100%; display:none;"><iframe src="about:blank" frameborder="5px" scrolling="yes" style="width:100%; height:100%;"></iframe></div>';
+//alert($(this).attr('src'));
+        imgstr = '<img id="ImgZoomInImage" src="' + $(this).attr('src')+'" onclick=$(\'#ImgZoomInImage\').hide();$(\'#ImgZoomInBG\').hide(); style="cursor:pointer; display:none; position:absolute; z-index:10001;" />';
+        if ($('#ImgZoomInBG').length < 1) {
+            $('body').append(bgstr);
+        }
+        if ($('#ImgZoomInImage').length < 1) {
+            $('body').append(imgstr);
+        }
+        else {
+            $('#ImgZoomInImage').attr('src', $(this).attr('src'));
+        }
+//alert($(window).scrollLeft());
+//alert( $(window).scrollTop());
+        $('#ImgZoomInImage').css('left', $(window).scrollLeft() + ($(window).width() - $('#ImgZoomInImage').width()) / 2);
+        $('#ImgZoomInImage').css('top', $(window).scrollTop() + ($(window).height() - $('#ImgZoomInImage').height()) / 2);
+        $('#ImgZoomInBG').show();
+        $('#ImgZoomInImage').show();
+    };
+    $(document).ready(function () {
+        $("#imgTest").bind("click", function () {
+            $(this).ImgZoomIn();
+        });
+
+        //将编辑的图片id传给模态框
+        $("#deleteP").on('click',function () {
+            var id=$("#plantpic").text();
+            console.log();
+        });
+    });
+
+</script>
 
 </body>
 

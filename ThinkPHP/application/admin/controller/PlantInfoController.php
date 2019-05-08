@@ -404,8 +404,92 @@ class PlantInfoController extends IndexController
         return $this->fetch('index');
     }
 
+    /**
+     * 图片管理页
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function picture(){
+        $plant=Request::instance()->param();
+        $PicInfo=new PicInfo();
+        $PicInfo=$PicInfo
+            ->alias('p')
+            ->join('plant_info i','i.plantid=p.plantid')
+            ->field('p.picid,p.plantpic,p.plantnum,p.plantid,i.plantname')
+            ->where('p.plantid',$plant['plantid'])
+            ->select();
+//        var_dump($PicInfo);
+        $this->assign('picinfo',$PicInfo);
         return $this->fetch();
+    }
+
+    /**
+     * 插入图片，每次一张
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function insertpic(){
+        $picinfo=Request::instance()->param();
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('insertpic');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($file){
+            $info = $file->validate(['ext'=>'jpg,png,jpeg'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'plant');
+            if($info){
+                // 成功上传后 获取上传信息
+            }else{
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+        }else{
+            var_dump($file);
+        }
+        $PicInfo=new PicInfo();
+        $PicInfo->plantid=$picinfo['plantid'];
+        $PicInfo->plantpic=$info->getSaveName();
+        $num=PicInfo::field('count(picid) as number')->where('plantid',$picinfo['plantid'])->group('plantid')->select();
+        $PicInfo->plantnum=$num[0]->getData('number')+1;
+//        var_dump($PicInfo);
+        $PicInfo->save();
+
+        $PicInfo=$PicInfo
+            ->alias('p')
+            ->join('plant_info i','i.plantid=p.plantid')
+            ->field('p.picid,p.plantpic,p.plantnum,p.plantid,i.plantname')
+            ->where('p.plantid',$picinfo['plantid'])
+            ->select();
+//        var_dump($PicInfo);
+        $this->assign('picinfo',$PicInfo);
+        return $this->fetch('picture');
+    }
+
+    /**
+     * 删除图片
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function deleteP(){
+        $picid=Request::instance()->param();
+        $plant=PicInfo::field('plantid')->where('picid',$picid['picid'])->select();
+        PicInfo::destroy($picid['picid']);
+        $PicInfo=new PicInfo();
+        $PicInfo=$PicInfo
+            ->alias('p')
+            ->join('plant_info i','i.plantid=p.plantid')
+            ->field('p.picid,p.plantpic,p.plantnum,p.plantid,i.plantname')
+            ->where('p.plantid',$plant[0]->getData('plantid'))
+            ->select();
+//        var_dump($PicInfo);
+        $this->assign('picinfo',$PicInfo);
+        return $this->fetch('picture');
     }
 
 

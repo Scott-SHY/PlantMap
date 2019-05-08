@@ -37,7 +37,8 @@ class PlantInfo extends Model
             ->alias('i')
             ->join('plant_class c','c.plantid=i.plantid')
             ->join('plant_admin a','a.plantid=i.plantid')
-            ->field('i.plantname,i.alias,i.sciname,i.area,c.familyname,c.genusname,a.updatetime')
+            ->join('admin ad','ad.adminid=a.adminid')
+            ->field('i.plantname,i.alias,i.sciname,i.area,c.familyname,c.genusname,ad.username,a.updatetime')
 //            ->where('i.name=c.plantname')
             ->select();
 
