@@ -32,7 +32,7 @@ class AdminController extends IndexController
      * @throws \think\exception\DbException
      */
     public function manage(){
-        if(session('authority')==2){
+        if(session('authority')==2||session('authority')==3){
             return $this->error('您没有权限访问此页面');
         }
         $map=Request::instance()->param('adminid');

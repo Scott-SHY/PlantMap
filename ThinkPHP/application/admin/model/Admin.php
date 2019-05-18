@@ -24,6 +24,11 @@ class Admin extends Model
         $Admin=self::get($map);
 
         if(!is_null($Admin)){
+            //账号禁用状态
+            if($Admin->getData('authority')==3) {
+                return false;
+            }
+
             //验证密码是否正确
             if($Admin->checkPassword($password)){
                 //登录
@@ -99,7 +104,7 @@ class Admin extends Model
         //查询id,头像，用户名，权限，IP,登陆时间
         $admininfo=$AdminInfo
             ->alias('a')
-            ->field('a.adminid,a.headpic,a.username,CASE a.authority WHEN 1 THEN "超级管理员" ELSE "管理员" END as authority,a.IP,a.logintime')
+            ->field('a.adminid,a.headpic,a.username,CASE a.authority WHEN 1 THEN "超级管理员" WHEN 2 THEN "管理员" ELSE "未启用" END as authority,a.IP,a.logintime')
             ->select();
 
         $adminjson=json_encode($admininfo,JSON_UNESCAPED_UNICODE);
@@ -120,6 +125,9 @@ class Admin extends Model
         if ($authority==1)
             return "超级管理员";
         else
-            return "管理员";
+            if($authority==2)
+                return "管理员";
+            else
+                return "未启用";
     }
 }

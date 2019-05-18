@@ -21,4 +21,19 @@ class Website extends Model
         $webdata=$website[0];
         return $webdata;
     }
+
+    /**
+     * 更新网站信息
+     * @return boolean
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    static public function updateWeb(){
+        $Website=new self();
+        $Website->plantnum=PlantInfo::field('count(*)')->select();
+        $Website->bugnum=Bug::field('count(*)')->select();
+        $Website->adminnum=Admin::field('count(*)')->select();
+        return true;
+    }
 }

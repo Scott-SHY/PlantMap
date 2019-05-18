@@ -135,7 +135,7 @@ class LoginController extends Controller
             }
         }
         $Admin=new Admin();
-        $Admin->authority=2;
+        $Admin->authority=3;
         $Admin->username=$register['username'];
         $Admin->password=Admin::encryptPassword($register['password']);
         $Admin->IP=Request::instance()->ip();

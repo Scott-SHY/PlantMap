@@ -10,6 +10,7 @@ use app\admin\model\PlantAdmin;
 use app\admin\model\PlantClass;
 use app\admin\model\PlantInfo;
 use app\admin\model\PlantMap;
+use app\admin\model\Website;
 use function MongoDB\BSON\toJSON;
 use think\Exception;
 use think\Request;
@@ -108,7 +109,7 @@ class PlantInfoController extends IndexController
         $pic = request()->file('pic');
         // 移动到框架应用根目录/public/uploads/ 目录下
         if($pic){
-            $pinfo = $pic->validate(['ext'=>'usdz'])
+            $pinfo = $pic->validate(['ext'=>'jpg,jpeg,png'])
                 ->rule('uniqid')
                 ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'plant');
             if($pinfo){
@@ -174,6 +175,7 @@ class PlantInfoController extends IndexController
 
         //保存数据的调用次序还需修改
         PlantInfo::saveData();
+        Website::updateWeb();
         return $this->fetch('index');
 
     }
@@ -309,6 +311,18 @@ class PlantInfoController extends IndexController
             return $this->error('PlantAdmin不存在id='.$plant['plantid'].'的数据');
         }
 
+        $models = request()->file('models');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($models){
+            $minfo = $models->validate(['ext'=>'usdz'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'models');
+            if($minfo){
+                // 成功上传后 获取上传信息
+            }else{
+                echo $models->getError();
+            }
+        }
 
         //写入PlantClass新数据
         $PlantClass->plantname=$plant['plantname'];
@@ -329,7 +343,9 @@ class PlantInfoController extends IndexController
         $PlantInfo->alias=$plant['alias'];
         $PlantInfo->sciname=$plant['sciname'];
         $PlantInfo->area=$plant['area'];
-        $PlantInfo->models=$plant['models'];
+        if($models) {
+            $PlantInfo->models = $models->getSaveName();
+        }
         $PlantInfo->introduce=$plant['introduce'];
         $PlantInfo->isUpdate(true)->save();
 //        var_dump($PlantInfo);
@@ -381,6 +397,7 @@ class PlantInfoController extends IndexController
         $this->assign('family',$family);
         $this->assign('genus',$genus);
         PlantInfo::saveData();
+        Website::updateWeb();
 
         return $this->fetch('index');
     }
@@ -400,6 +417,7 @@ class PlantInfoController extends IndexController
         $this->assign('family',$family);
         $this->assign('genus',$genus);
         PlantInfo::saveData();
+        Website::updateWeb();
 
         return $this->fetch('index');
     }

@@ -79,10 +79,11 @@ class PlantController extends Controller
         $PlantInfo=$PlantInfo
             ->alias('i')
             ->join('plant_class c','c.plantid=i.plantid')
-            ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+            ->join('pic_info p','p.plantid=i.plantid')
+            ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
+            ->where('p.plantnum',1)
             ->paginate(9,false, ['query' => request()->param()]);
         $this->assign('plant',$PlantInfo);
-
         return $this->fetch();
     }
 
@@ -150,10 +151,12 @@ class PlantController extends Controller
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']!='0'){
@@ -164,10 +167,12 @@ class PlantController extends Controller
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']!='0'){
             //区域为空，其余三个不为空
@@ -176,9 +181,11 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']!='0'){
@@ -188,8 +195,10 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']=='0'){
@@ -199,9 +208,11 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->join('family f','f.name=c.familyname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']!='0'){
@@ -211,9 +222,11 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('f.familyid',$search['family_id'])
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //区域和科为空，其余不为空
@@ -222,8 +235,10 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']!='0'){
@@ -234,9 +249,11 @@ class PlantController extends Controller
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //搜索栏和属为空，其余不为空
@@ -245,9 +262,11 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('plant_map m','m.plantname=i.plantname')
                 ->join('family f','f.name=c.familyname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
                 ->where('f.familyid',$search['family_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']=='0'){
             //区域和属为空，其余不为空
@@ -255,8 +274,10 @@ class PlantController extends Controller
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('f.familyid',$search['family_id'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']=='0'){
@@ -265,8 +286,10 @@ class PlantController extends Controller
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('plant_map m','m.plantname=i.plantname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
+                ->where('p.plantnum',1)
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']!='0' && $search['genus_id']=='0'){
@@ -275,8 +298,10 @@ class PlantController extends Controller
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('f.familyid',$search['family_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']!='0'){
             //属不为空，其余为空
@@ -285,8 +310,10 @@ class PlantController extends Controller
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('family f','f.name=c.familyname')
                 ->join('genus g','g.name=c.genusname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('g.genusid',$search['genus_id'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']!='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //区域不为空，其余为空
@@ -294,15 +321,18 @@ class PlantController extends Controller
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
                 ->join('plant_map m','m.plantname=i.plantname')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where('m.mapname',$search['mapname'])
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']!='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //搜索不为空，其余为空
             $Plant=$Plant
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where($where)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']=='0'){
@@ -310,9 +340,11 @@ class PlantController extends Controller
             $Plant=$Plant
                 ->alias('i')
                 ->join('plant_class c','c.plantid=i.plantid')
-                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area')
+                ->join('pic_info p','p.plantid=i.plantid')
+                ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
-            $this->assign('plant',$Plant);
+//            $this->assign('plant',$Plant);
         }
 //        var_dump($Plant);
         if($search['family_id']!='0'){
@@ -356,10 +388,17 @@ class PlantController extends Controller
         return $this->fetch('single');
     }
 
-    public function test(){
-        $Map=new Map();
-        $Map=$Map->field('mapname,number')->select();
-        $this->assign('map',$Map);
+    public function identify(){
+        $data['score']='';
+        $data['name']='';
+        $pic['pic']='white.png';
+        $this->assign('pic',$pic);
+        $this->assign('data',$data);
+
+        return $this->fetch();
+    }
+
+    public function ai(){
         return $this->fetch();
     }
 
@@ -391,7 +430,70 @@ class PlantController extends Controller
         var_dump($search);
     }
 
-    public function test3(){
-        var_dump(Request::instance()->param());
+    /**
+     * 调用百度植物识别api
+     * @return mixed
+     */
+    public function plantai(){
+
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('pic');
+        if($file){
+            $info = $file->validate(['ext'=>'jpg,png,jpeg'])
+                ->rule('uniqid')
+                ->move(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'ai');
+            if($info){
+                // 成功上传后 获取上传信息
+            }else{
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+        }else{
+            $pic['pic']='white.png';
+            $this->assign('pic',$pic);
+            return $this->fetch('identify');
+        }
+//        var_dump($file);
+        $APP_ID = '16265011';
+        $API_KEY = 'Fge8aeljnNAQPL1iu7WIn0u6';
+        $SECRET_KEY = 'E6vTkDO4W2SLZKdxtIEymXjGSYbE1xRd';
+        vendor('Ai.AipImageClassify');
+        $client = new \AipImageClassify($APP_ID, $API_KEY, $SECRET_KEY);
+        $image = file_get_contents(ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'ai'. DS .$info->getSaveName());
+        $data=$client->plantDetect($image);
+//        var_dump($data['result']);
+        $this->assign('data',$data['result']);
+
+        $pic['pic']=$info->getSaveName();
+        $this->assign('pic',$pic);
+        return $this->fetch('identify');
+
+//        var_dump("image_url=".ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'plant'. DS .$info->getSavename());
+//        $host = "https://plantapi.xingseapp.com";
+//        $path = "/item/identification";
+//        $method = "POST";
+//        $appcode = "cf2fbecd11de4ea69b826b32bbd09628";
+//        $headers = array();
+//        array_push($headers, "Authorization:APPCODE " . $appcode);
+//        //根据API的要求，定义相对应的Content-Type
+//        array_push($headers, "Content-Type".":"."application/x-www-form-urlencoded; charset=UTF-8");
+//        $querys = "";
+//        $bodys = "image_url=".ROOT_PATH . 'public' . DS .'static'. DS . 'uploads'. DS .'plant'. DS .$info->getSavename();
+//        $url = $host . $path;
+//
+//        $curl = curl_init();
+//        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+//        curl_setopt($curl, CURLOPT_URL, $url);
+//        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+//        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//        curl_setopt($curl, CURLOPT_HEADER, true);
+//        if (1 == strpos("$".$host, "https://"))
+//        {
+//            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+//            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+//        }
+//        curl_setopt($curl, CURLOPT_POSTFIELDS, $bodys);
+//        var_dump(curl_exec($curl));
     }
 }

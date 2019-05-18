@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>校园植物地图</title>
+    <title>校园植物</title>
 
     <link rel="shortcut icon" href="__PUBLIC__/index/images/plant.ico">
     <!-- Bootstrap -->
@@ -40,7 +40,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'北苑'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'北苑区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-home icon-bg-1"></i>
                                     <h4>北苑区</h4>
@@ -49,7 +49,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="0" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'北苑'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'北苑区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -59,7 +59,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'南苑'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'南苑区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-home icon-bg-2"></i>
                                     <h4>南苑区</h4>
@@ -68,7 +68,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="1" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'南苑'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'南苑区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -78,7 +78,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'图书馆'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'图书馆区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-book icon-bg-3"></i>
                                     <h4>图书馆区</h4>
@@ -87,7 +87,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="2" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'图书馆'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'图书馆区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -97,7 +97,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'教学楼'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'教学楼区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-building icon-bg-4"></i>
                                     <h4>教学楼区</h4>
@@ -106,7 +106,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="3" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'教学楼'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'教学楼区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -116,7 +116,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'牌坊'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'牌坊区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-home icon-bg-5"></i>
                                     <h4>牌坊区</h4>
@@ -125,7 +125,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="4" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'牌坊'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'牌坊区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -135,7 +135,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'理科楼'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'理科楼区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-building-o icon-bg-6"></i>
                                     <h4>理科楼区</h4>
@@ -144,7 +144,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="5" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'理科楼'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'理科楼区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -154,7 +154,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'行政楼'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'行政楼区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-institution icon-bg-7"></i>
                                     <h4>行政楼区</h4>
@@ -163,7 +163,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="6" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'行政楼'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'行政楼区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
@@ -173,7 +173,7 @@
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
-                            <a href="{:url('index/plant/search?mapname='.'逸夫楼'.'&state='.'onlyarea')}">
+                            <a href="{:url('index/plant/search?mapname='.'逸夫楼区'.'&state='.'onlyarea')}">
                                 <div class="header">
                                     <i class="fa fa-university icon-bg-8"></i>
                                     <h4>逸夫楼区</h4>
@@ -182,7 +182,7 @@
                             <ul class="category-list">
                                 {volist name="mapnum" id="data1" offset="7" length="1"}
                                 {volist name="data1" id="data2" offset="0" length="4"}
-                                <li><a href="{:url('index/plant/search?mapname='.'逸夫楼'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
+                                <li><a href="{:url('index/plant/search?mapname='.'逸夫楼区'.'&familyname='.$data2['familyname'].'&state='.'areafamily')}">{$data2['familyname']}<span>{$data2['number']}</span></a>
                                 </li>
                                 {/volist}
                                 {/volist}
