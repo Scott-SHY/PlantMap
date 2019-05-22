@@ -11,6 +11,8 @@ use app\admin\model\PlantClass;
 use app\admin\model\PlantInfo;
 use app\admin\model\PlantMap;
 use app\admin\model\Website;
+use app\admin\model\Bug;
+use app\admin\model\Admin;
 use function MongoDB\BSON\toJSON;
 use think\Exception;
 use think\Request;
@@ -29,7 +31,8 @@ class PlantInfoController extends IndexController
         //每次调用方法都会更新一遍数据？效率低下，应该把静态方法放在增删改操作之后调用
         //更新数据
         PlantInfo::saveData();
-
+        Website::updateWeb();
+        Map::updateMap();
 //        模态框下拉列表的数据
         $family=Family::all();
         $genus=Genus::all();
@@ -102,9 +105,8 @@ class PlantInfoController extends IndexController
             }else{
                 echo $models->getError();
             }
-        }else{
-            var_dump($models);
         }
+//        $models=null;
         // 获取表单上传图片 例如上传了001.jpg
         $pic = request()->file('pic');
         // 移动到框架应用根目录/public/uploads/ 目录下
@@ -118,8 +120,6 @@ class PlantInfoController extends IndexController
                 // 上传失败获取错误信息
                 echo $pic->getError();
             }
-        }else{
-            var_dump($pic);
         }
 
         //插入信息到plant_info表
@@ -128,14 +128,21 @@ class PlantInfoController extends IndexController
         $PlantInfo->alias=$plantdata['alias'];
         $PlantInfo->sciname=$plantdata['sciname'];
         $PlantInfo->area=$plantdata['area'];
-        $PlantInfo->models=$minfo->getSaveName();
+        if($models) {
+            $PlantInfo->models = $minfo->getSaveName();
+        }
         $PlantInfo->introduce=$plantdata['introduce'];
 //        var_dump($PlantInfo);
         $PlantInfo->save();
 
+        $plantid=$PlantInfo
+            ->field('plantid')
+            ->where('plantname',$plantdata['plantname'])
+            ->select();
+
         $PicInfo=new PicInfo();
-        $PicInfo->plantid=$PlantInfo->plantid;
-        $PicInfo->plantpic=$pic->getSaveName();
+        $PicInfo->plantid=$plantid[0]->getData('plantid');
+        $PicInfo->plantpic=$pinfo->getSaveName();
         $PicInfo->plantnum=1;
         $PicInfo->save();
 
@@ -144,7 +151,7 @@ class PlantInfoController extends IndexController
         $PlantClass->familyname=Family::getFamilyName($plantdata['family_id'])->getData('name');
         $PlantClass->genusname=Genus::getGenusName($plantdata['genus_id'])->getData('name');
         $PlantClass->plantname=$plantdata['plantname'];
-        $PlantClass->plantid=$PlantInfo->plantid;
+        $PlantClass->plantid=$plantid[0]->getData('plantid');
 //        var_dump($PlantClass);
         $PlantClass->save();
 
@@ -153,7 +160,7 @@ class PlantInfoController extends IndexController
 //        var_dump($PlantInfo->name);
         foreach ($plantdata['map'] as $map) {
             $PlantMap=new PlantMap();
-            $PlantMap->plantname = $PlantInfo->plantname;
+            $PlantMap->plantname = $plantdata['plantname'];
             $PlantMap->mapname = $map;
 //            var_dump($PlantMap);
             $PlantMap->save();
@@ -161,10 +168,6 @@ class PlantInfoController extends IndexController
 
         //插入信息到plant_admin表
         $PlantAdmin=new PlantAdmin();
-        $plantid=$PlantInfo
-                ->field('plantid')
-                ->where('plantname',$plantdata['plantname'])
-                ->select();
         $PlantAdmin->plantid=$plantid[0]->getData('plantid');
         $PlantAdmin->adminid=session('adminid');
         $PlantAdmin->createtime=date('Y-m-d H:i:s');
@@ -176,6 +179,7 @@ class PlantInfoController extends IndexController
         //保存数据的调用次序还需修改
         PlantInfo::saveData();
         Website::updateWeb();
+        Map::updateMap();
         return $this->fetch('index');
 
     }
@@ -269,16 +273,34 @@ class PlantInfoController extends IndexController
 //        $PlantClass->plantname=$plant['plantname'];
 //        $PlantClass->familyname=Family::where('familyid',$plant['familyid'])->value('name');
 //        $PlantClass->genusname=Genus::where('genusid',$plant['genusid'])->value('name');
-        $plantclass['plantname']='测试ss';
-        $PlantClass=new PlantClass();
-        $PlantClass=$PlantClass
-            ->alias('c')
-            ->join('family f','f.name=c.familyname')
-            ->join('genus g','g.name=c.genusname')
-            ->field('c.plantname,c.familyname,c.genusname,f.familyid,g.genusid')
-            ->where('c.plantname',$plantclass['plantname'])
-            ->select();
-        var_dump($PlantClass[0]);
+//        $plantclass['plantname']='测试ss';
+//        $PlantClass=new PlantClass();
+//        $PlantClass=$PlantClass
+//            ->alias('c')
+//            ->join('family f','f.name=c.familyname')
+//            ->join('genus g','g.name=c.genusname')
+//            ->field('c.plantname,c.familyname,c.genusname,f.familyid,g.genusid')
+//            ->where('c.plantname',$plantclass['plantname'])
+//            ->select();
+//        var_dump($PlantClass[0]);
+//        $Website=Website::get('Plant');
+//        $plantnum=PlantInfo::field('count(*) as num')->select();
+//        $bugnum=Bug::field('count(*) as num')->select();
+//        $adminnum=Admin::field('count(*) as num')->select();
+//        $Website->plantnum=$plantnum[0]->getData('num');
+//        $Website->bugnum=$bugnum[0]->getData('num');
+//        $Website->adminnum=$adminnum[0]->getData('num');
+//        var_dump($Website);
+        $number=PlantMap::field('mapname,count(*) as number')->group('mapname')->select();
+//        var_dump($number);
+        for($i=0; $i<8; $i++){
+            Map::where('mapname',$number[$i]->getData('mapname'))
+                ->update(['number'=>$number[$i]->getData('number')]);
+//            $map=Map::get($number[$i]->getData('mapname'))->toArray();
+//            $map['number']=$number[$i]->getData('number');
+//            $map->update(true)->save();
+//            var_dump($map);
+        }
     }
 
     /**
@@ -377,6 +399,8 @@ class PlantInfoController extends IndexController
         $this->assign('plantclass',$PlantClass[0]);
         $Map=Map::all();
         $this->assign('map',$Map);
+        PlantInfo::saveData();
+        Map::updateMap();
 
         return $this->fetch('manage');
 //        return $this->success('update ok!',url('index'));
@@ -398,7 +422,7 @@ class PlantInfoController extends IndexController
         $this->assign('genus',$genus);
         PlantInfo::saveData();
         Website::updateWeb();
-
+        Map::updateMap();
         return $this->fetch('index');
     }
 
@@ -418,7 +442,7 @@ class PlantInfoController extends IndexController
         $this->assign('genus',$genus);
         PlantInfo::saveData();
         Website::updateWeb();
-
+        Map::updateMap();
         return $this->fetch('index');
     }
 

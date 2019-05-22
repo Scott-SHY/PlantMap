@@ -30,10 +30,14 @@ class Website extends Model
      * @throws \think\exception\DbException
      */
     static public function updateWeb(){
-        $Website=new self();
-        $Website->plantnum=PlantInfo::field('count(*)')->select();
-        $Website->bugnum=Bug::field('count(*)')->select();
-        $Website->adminnum=Admin::field('count(*)')->select();
+        $Website=Website::get('Plant');
+        $plantnum=PlantInfo::field('count(*) as num')->select();
+        $bugnum=Bug::field('count(*) as num')->select();
+        $adminnum=Admin::field('count(*) as num')->select();
+        $Website->plantnum=$plantnum[0]->getData('num');
+        $Website->bugnum=$bugnum[0]->getData('num');
+        $Website->adminnum=$adminnum[0]->getData('num');
+        $Website->save();
         return true;
     }
 }

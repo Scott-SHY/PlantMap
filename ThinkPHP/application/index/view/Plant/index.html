@@ -68,7 +68,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="search-result bg-gray">
-                    <h2>Results For {$search['search']|default=''} {$search['mapname']|default=''} {$familyname['name']|default=''} {$genusname['name']|default=''}</h2>
+                    <h2>检索结果:&nbsp;{$search['search']|default=''}&nbsp;&nbsp;&nbsp;&nbsp;{$search['mapname']|default=''}&nbsp;&nbsp;&nbsp;&nbsp;
+                        {$familyname['name']|default=''}&nbsp;&nbsp;&nbsp;&nbsp;{$genusname['name']|default=''}</h2>
                 </div>
             </div>
         </div>
@@ -115,8 +116,8 @@
                                         <!-- <div class="price">$200</div> -->
                                         <a href="single?plantid={$plants->getData('plantid')}">
                                             <img class="card-img-top img-fluid myimg"
-                                                 src="__PUBLIC__/uploads/plant/default.png"
-                                                 alt="Card image cap">
+                                                 src="__PUBLIC__/uploads/plant/{$plants->getData('plantpic')}"
+                                                 alt="Card image cap" style="height: 255px">
                                         </a>
                                     </div>
                                     <div class="card-body">

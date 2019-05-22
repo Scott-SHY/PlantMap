@@ -3,7 +3,7 @@
 
 namespace app\admin\model;
 
-
+use app\admin\model\PlantMap;
 use think\Model;
 
 /**
@@ -35,5 +35,20 @@ class Map extends Model
         }else {
             return true;
         }
+    }
+
+    /**
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    static public function updateMap(){
+        $number=PlantMap::field('mapname,count(*) as number')->group('mapname')->select();
+        for($i=0; $i<8; $i++){
+            Map::where('mapname',$number[$i]->getData('mapname'))
+                ->update(['number'=>$number[$i]->getData('number')]);
+        }
+        return true;
     }
 }
