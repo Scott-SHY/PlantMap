@@ -121,7 +121,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <div id="visitchart" style="width: 100%;height: 400px"></div>
+                                <div id="familynum" style="width: 100%;height: 400px"></div>
 
                             </div>
                         </div>
@@ -169,6 +169,78 @@
 <script src="__PUBLIC__/admin/js/jquery.knob.min.js" type="text/javascript"></script>
 <script src="__PUBLIC__/admin/js/jquery.min.js" type="text/javascript"></script>
 <script src="__PUBLIC__/admin/js/index-data.js" type="text/javascript"></script>
+
+<script>
+    /**
+     * 科对应植物数量饼状图
+     * @type {Array}
+     */
+    var family=[],familynumber=[];
+    function Familynum(){
+        $.ajax({
+            type:"post",
+            async:false,
+            url:"{:url('admin/chart/familynum')}",
+            data:{},
+            dataType:"json",
+            success:function(result){
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        family.push(result[i].familyname);
+                        familynumber.push({
+                            value:result[i].number,
+                            name:result[i].familyname,
+                        });
+                    }
+                }
+            }
+        })
+        return family,familynumber;
+    }
+    Familynum();
+
+    var myChart2 = echarts.init(document.getElementById('familynum'));
+    var options2={
+        //定义一个标题
+        title:{
+            text: '科-属数量',
+            x:'center',
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend:{
+            orient: 'vertical',
+            left: 'left',
+            data: family,
+            textStyle:{
+                color:['#98a6ad']
+            }
+        },
+        //name=legend.data的时候才能显示图例
+        series:[{
+            name: '属数量',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data: familynumber,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }]
+    };
+    myChart2.clear();
+    myChart2.setOption(options2);
+
+</script>
 </body>
 
 </html>

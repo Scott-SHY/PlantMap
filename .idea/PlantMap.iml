@@ -4,6 +4,8 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/ThinkPHP/application" isTestSource="false" packagePrefix="app" />
       <excludeFolder url="file://$MODULE_DIR$/ThinkPHP/thinkphp/library/traits" />
+      <excludeFolder url="file://$MODULE_DIR$/ThinkPHP/vendor/Ai/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ThinkPHP/vendor/workerman/workerman" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

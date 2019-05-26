@@ -12,6 +12,8 @@
       <path value="$PROJECT_DIR$/ThinkPHP/vendor/topthink/think-oracle" />
       <path value="$PROJECT_DIR$/ThinkPHP/vendor/topthink/think-queue" />
       <path value="$PROJECT_DIR$/ThinkPHP/vendor/topthink/think-worker" />
+      <path value="$PROJECT_DIR$/ThinkPHP/vendor/workerman/workerman" />
+      <path value="$PROJECT_DIR$/ThinkPHP/vendor/Ai/lib" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

@@ -104,7 +104,7 @@
                                                                name="$map->getIsChecked($plantinfo)" value="true"
                                                                }checked="checked" {/eq}/>
                                                         <label for="map_name_{$map->getData('mapname')}"
-                                                               style="width: 84px">{$map->getData('mapname')}</label>
+                                                               style="width: 20%">{$map->getData('mapname')}</label>
                                                         {/volist}
                                                     </div>
                                                 </div>
@@ -132,10 +132,10 @@
                                                     <button type="submit" class="btn btn-primary btn-sm" formaction="{:url('picture?plantid='.$plantinfo->getData('plantid'))}">图片管理</button>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <a rel="ar" href="__PUBLIC__/uploads/models/{$plantinfo->getData('models')}"
-                                                       enctype="model/usd">
-                                                        <img src="__PUBLIC__/uploads/plant/default.png" style="width: 50%">
-                                                    </a>
+<!--                                                    <a rel="ar" href="__PUBLIC__/uploads/models/{$plantinfo->getData('models')}"-->
+<!--                                                       enctype="model/usd">-->
+<!--                                                        <img src="__PUBLIC__/uploads/plant/default.png" style="width: 50%">-->
+<!--                                                    </a>-->
                                                     <label class="col-sm-2">模 型:</label>
                                                     <input type="file" class="form-control col-sm-10" name="models"
                                                            value="{$plantinfo->getData('models')}">
@@ -172,7 +172,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
-                <form action="insert" role="form" method="post">
+                <form action="insert" role="form" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="plantname" class="col-sm-2">名 称:</label>
                         <input type="text" class="my-form col-sm-10" name="plantname" id="plantname"
@@ -185,11 +185,11 @@
                     <div class="form-group row">
                         <label for="sciname" class="col-sm-2">学 名:</label>
                         <input type="text" class="my-form col-sm-10" name="sciname" id="sciname"
-                               placeholder="请输入学名">
+                               placeholder="请输入学名" required>
                     </div>
                     <div class="form-group row">
                         <label for="area" class="col-sm-2">分 布:</label>
-                        <input type="text" class="my-form col-sm-10" name="area" id="area" placeholder="分布备注">
+                        <input type="text" class="my-form col-sm-10" name="area" id="area" placeholder="分布备注" required>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <input type="checkbox" name="map[]" id="map1" value="北苑区"><label>北苑区</label>
@@ -222,7 +222,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">图 片:</label>
-                        <input type="file" class="form-control col-sm-10" name="pic" id="pic">
+                        <input type="file" class="form-control col-sm-10" name="pic" id="pic" enctype="multipart/form-data">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">模 型:</label>

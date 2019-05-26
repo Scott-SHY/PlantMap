@@ -334,6 +334,7 @@ class PlantController extends Controller
                 ->join('pic_info p','p.plantid=i.plantid')
                 ->field('i.plantid,i.plantname,c.familyname,c.genusname,i.alias,i.area,p.plantpic')
                 ->where($where)
+                ->where('p.plantnum',1)
                 ->paginate(9,false,['query'=>request()->param()]);
         }else if($search['search']=='' && $search['mapname']=='' && $search['family_id']=='0' && $search['genus_id']=='0'){
             //全为空
