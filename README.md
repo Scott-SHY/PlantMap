@@ -1,2 +1,5 @@
-# PlantMap
-毕业设计整体
+## Graduation project
+A PlantMap Websites of NJAU.
+* ThinkPHP
+* Bootstrap
+* ARQuickLook
